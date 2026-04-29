@@ -1,0 +1,162 @@
+'use client'
+
+import { useState, FormEvent } from 'react'
+import { CONTACT_INFO } from '@/lib/data'
+import styles from './Contact.module.css'
+
+const SERVICES = [
+  'Wedding Photography',
+  'Cinematic Films',
+  'Pre-Wedding Shoots',
+  'Post-Wedding Shoots',
+  'Birthday Parties',
+  'Corporate Events',
+  'Other Events',
+]
+
+export default function Contact() {
+  const [submitted, setSubmitted] = useState(false)
+  const [form, setForm] = useState({
+    name: '', partner: '', email: '', phone: '', date: '', service: '', message: '',
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  }
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+    setTimeout(() => setSubmitted(false), 3500)
+  }
+
+  return (
+    <section id="contact" className={styles.section}>
+      <div className={styles.inner}>
+        {/* Info column */}
+        <div>
+          <p className="section-label reveal">Get in Touch</p>
+          <h2 className="section-title reveal reveal-delay-1">
+            Let&apos;s Tell<br />Your <em>Story</em>
+          </h2>
+          <p className={`${styles.lead} reveal reveal-delay-2`}>
+            Your love story deserves the finest storytelling. Reach out and let&apos;s talk
+            about how we&apos;ll capture your most precious memories.
+          </p>
+
+          <div className={`${styles.details} reveal reveal-delay-3`}>
+            <div className={styles.detail}>
+              <div className={styles.icon}>✉</div>
+              <div>
+                <div className={styles.detailLabel}>Email</div>
+                <div className={styles.detailValue}>{CONTACT_INFO.email}</div>
+              </div>
+            </div>
+            <div className={styles.detail}>
+              <div className={styles.icon}>☎</div>
+              <div>
+                <div className={styles.detailLabel}>Phone / WhatsApp</div>
+                <div className={styles.detailValue}>{CONTACT_INFO.phone}</div>
+              </div>
+            </div>
+            <div className={styles.detail}>
+              <div className={styles.icon}>◎</div>
+              <div>
+                <div className={styles.detailLabel}>Studio</div>
+                <div className={styles.detailValue} style={{ whiteSpace: 'pre-line' }}>
+                  {CONTACT_INFO.address}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Social links */}
+          <div className={`${styles.socials} reveal reveal-delay-4`}>
+            <a
+              href={CONTACT_INFO.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`social-link ${styles.socialLink}`}
+              aria-label="Instagram"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a
+              href={CONTACT_INFO.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`social-link ${styles.socialLink}`}
+              aria-label="WhatsApp"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.073 23.27a.75.75 0 00.916.916l5.412-1.46A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.028-1.385l-.36-.214-3.733 1.008 1.008-3.733-.214-.36A9.818 9.818 0 1112 21.818z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        {/* Form */}
+        <form
+          className={`${styles.form} reveal reveal-delay-2`}
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <div className={styles.row}>
+            <div className={styles.group}>
+              <label htmlFor="name">Your Name</label>
+              <input id="name" name="name" type="text" placeholder="Enter your name" value={form.name} onChange={handleChange} required />
+            </div>
+            <div className={styles.group}>
+              <label htmlFor="partner">
+                Partner&apos;s Name{' '}
+                <span className={styles.optional}>(Optional)</span>
+              </label>
+              <input id="partner" name="partner" type="text" placeholder="Enter partner's name" value={form.partner} onChange={handleChange} />
+            </div>
+          </div>
+
+          <div className={styles.group}>
+            <label htmlFor="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="hello@example.com" value={form.email} onChange={handleChange} required />
+          </div>
+
+          <div className={styles.group}>
+            <label htmlFor="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="+91 00000 00000" value={form.phone} onChange={handleChange} />
+          </div>
+
+          <div className={styles.row}>
+            <div className={styles.group}>
+              <label htmlFor="date">Event Date</label>
+              <input id="date" name="date" type="date" value={form.date} onChange={handleChange} />
+            </div>
+            <div className={styles.group}>
+              <label htmlFor="service">Service Needed</label>
+              <select id="service" name="service" value={form.service} onChange={handleChange}>
+                <option value="">Select a service</option>
+                {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <div className={styles.group}>
+            <label htmlFor="message">Your Love Story</label>
+            <textarea id="message" name="message" placeholder="Tell us about your dream wedding..." value={form.message} onChange={handleChange} rows={4} />
+          </div>
+
+          <button
+            type="submit"
+            className={`${styles.submit} ${submitted ? styles.submitSuccess : ''}`}
+          >
+            {submitted ? 'Message Sent ✓' : 'Send Message →'}
+          </button>
+        </form>
+      </div>
+    </section>
+  )
+}

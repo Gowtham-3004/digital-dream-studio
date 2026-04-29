@@ -1,0 +1,14 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 9999;
+  pointer-events: none;
+  /* No transition — raw scroll tracking for responsiveness */
+  box-shadow: 0 0 12px rgba(201, 169, 110, 0.6);
+}

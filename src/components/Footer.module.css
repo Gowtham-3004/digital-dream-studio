@@ -1,0 +1,42 @@
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg);
+}
+
+.logo {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.logo span {
+  color: var(--gold);
+}
+
+.tagline {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.copy {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 40px 24px;
+  }
+}

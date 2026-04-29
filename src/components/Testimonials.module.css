@@ -1,0 +1,154 @@
+.section {
+  background: var(--bg2);
+  overflow: hidden;
+  padding: 120px 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+  padding: 0 60px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.arrow {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--gold);
+  font-size: 1rem;
+  cursor: none;
+  transition: border-color 0.35s, background 0.35s, transform 0.25s;
+}
+.arrow:hover {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.08);
+  transform: scale(1.05);
+}
+
+/* ─── Track ─── */
+.track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 8px 60px 24px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.track::-webkit-scrollbar { display: none; }
+
+/* ─── Card ─── */
+.card {
+  min-width: 420px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  padding: 48px;
+  scroll-snap-align: start;
+  transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card:hover {
+  border-color: rgba(201,169,110,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(201,169,110,0.06);
+}
+.card:hover::before { transform: scaleX(1); }
+
+.quoteMark {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-size: 6rem;
+  line-height: 0.5;
+  color: var(--gold);
+  opacity: 0.25;
+  margin-bottom: 28px;
+  display: block;
+  transition: opacity 0.3s;
+}
+.card:hover .quoteMark { opacity: 0.45; }
+
+/* Readable testimonial text */
+.text {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-size: 1.25rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.75;
+  color: var(--cream);
+  margin-bottom: 36px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-size: 1.2rem;
+  color: var(--bg);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.stars {
+  color: var(--gold);
+  font-size: 0.72rem;
+  margin-bottom: 5px;
+  letter-spacing: 0.1em;
+}
+
+/* Readable author name */
+.name {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 4px;
+  font-weight: 400;
+}
+
+/* Readable event line */
+.event {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .section  { padding: 80px 0; }
+  .header   { padding: 0 24px; }
+  .track    { padding: 8px 24px 24px; }
+  .card     { min-width: 300px; padding: 32px 28px; }
+  .card:hover { transform: none; }
+  .text     { font-size: 1.1rem; }
+}

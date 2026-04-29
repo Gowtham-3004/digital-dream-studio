@@ -1,0 +1,197 @@
+/* ─── Nav bar ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 60px;
+  background: linear-gradient(to bottom, rgba(8, 7, 7, 0.95) 0%, transparent 100%);
+  transition: background 0.4s, padding 0.4s, border-color 0.4s;
+}
+
+.scrolled {
+  background: rgba(8, 7, 7, 0.97);
+  padding: 18px 60px;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+/* When drawer is open: strip nav background so drawer shows cleanly beneath */
+.menuOpen {
+  background: transparent !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+}
+
+/* ─── Logo ─── */
+.logo {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--cream);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: none;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1002; /* stay above drawer */
+}
+.logo span { color: var(--gold); }
+
+/* ─── Desktop nav links ─── */
+.links {
+  display: flex;
+  gap: 48px;
+  list-style: none;
+}
+
+.link {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+  cursor: none;
+}
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.link:hover { color: var(--gold); }
+.link:hover::after { transform: scaleX(1); }
+
+/* ─── Desktop CTA button ─── */
+.btn {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  border: none;
+  padding: 12px 28px;
+  cursor: none;
+  font-family: var(--font-jost, 'Jost', sans-serif);
+  font-weight: 400;
+  transition: background 0.3s;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--gold-light); }
+
+/* ─── Hamburger ─── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: none;
+  padding: 6px;
+  position: relative;
+  z-index: 1002; /* always above the drawer overlay */
+  /* fixed size so bars don't shift layout */
+  width: 36px;
+  height: 36px;
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--cream);
+  border-radius: 1px;
+  transition: transform 0.35s ease, opacity 0.25s ease, background 0.3s;
+  transform-origin: center;
+}
+
+/* X animation — bars are 1.5px tall, gap is 6px → centres are 7.5px apart */
+.barOpen1 { transform: translateY(7.5px) rotate(45deg); }
+.barOpen2 { opacity: 0; transform: scaleX(0); }
+.barOpen3 { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ─── Full-screen mobile drawer (sibling of <nav>, not a child) ─── */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1001; /* above page content, below hamburger (1002) */
+  background: rgba(8, 7, 7, 0.98);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  /* transition handled by open/close classes */
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.drawerOpen {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.drawerClose {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+}
+
+.drawerLink {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 300;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.25s;
+  position: relative;
+}
+.drawerLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.drawerLink:hover { color: var(--gold); }
+.drawerLink:hover::after { width: 100%; }
+
+.drawerBtn {
+  margin-top: 12px;
+  cursor: none !important;
+}
+
+/* ─── Mobile breakpoint ─── */
+@media (max-width: 900px) {
+  .nav     { padding: 20px 24px; }
+  .scrolled { padding: 16px 24px; }
+  .links   { display: none; }
+  .btn     { display: none; }
+  .hamburger { display: flex; }
+}
+
+/* ─── Touch devices: restore default cursor ─── */
+@media (hover: none) {
+  .logo, .link, .btn, .hamburger, .drawerLink, .drawerBtn {
+    cursor: auto;
+  }
+}
