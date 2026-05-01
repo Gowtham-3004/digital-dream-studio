@@ -137,9 +137,9 @@ export default function Services() {
       {/* Bottom CTA bar */}
       <div className={`${styles.cta} reveal`}>
         <p className={styles.ctaText}>
-          Not sure which package fits? Let&apos;s talk.
+          Not sure which package fits?
         </p>
-        <a href="#contact" className="btn-primary">Book a Consultation</a>
+        <a href="#contact" className="btn-primary">Let&apos;s talk</a>
       </div>
     </section>
   )

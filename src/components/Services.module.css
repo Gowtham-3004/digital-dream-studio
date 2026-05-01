@@ -11,7 +11,7 @@
   text-align: center;
 }
 .label { justify-content: center; }
-.label::before { display: none; }
+/* .label::before { display: none; } */
 .heading { margin-bottom: 24px; }
 
 /* Readable sub-heading */
@@ -150,7 +150,7 @@
   line-height: 1.85;
   max-width: 380px;
   letter-spacing: 0.01em;
-  opacity: 0;
+  /* opacity: 0; */
   transform: translateY(10px);
   transition: opacity 0.45s ease 0.08s, transform 0.45s ease 0.08s;
 }

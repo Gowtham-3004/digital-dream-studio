@@ -31,3 +31,12 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 40px));
+  }
+}

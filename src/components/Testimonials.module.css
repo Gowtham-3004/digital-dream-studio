@@ -48,13 +48,16 @@
 /* ─── Card ─── */
 .card {
   min-width: 420px;
+  max-width: 840px;
   flex-shrink: 0;
   border: 1px solid var(--border);
   padding: 48px;
   scroll-snap-align: start;
   transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
 }
 .card::before {
   content: '';
@@ -94,6 +97,13 @@
   line-height: 1.75;
   color: var(--cream);
   margin-bottom: 36px;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  width: 100%;
+  max-width: 100%;
+  display: block;
 }
 
 .author {

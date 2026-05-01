@@ -1,16 +1,42 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { TESTIMONIALS } from '@/lib/data'
 import styles from './Testimonials.module.css'
 
 export default function Testimonials() {
   const trackRef = useRef<HTMLDivElement>(null)
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null)
 
   const scroll = (dir: 'left' | 'right') => {
     if (!trackRef.current) return
     trackRef.current.scrollBy({ left: dir === 'right' ? 460 : -460, behavior: 'smooth' })
+    // Reset auto-scroll timer when user manually scrolls
+    resetAutoScroll()
   }
+
+  const autoScroll = () => {
+    if (!trackRef.current) return
+    const el = trackRef.current
+    const maxScroll = el.scrollWidth - el.clientWidth
+    if (el.scrollLeft >= maxScroll) {
+      el.scrollTo({ left: 0, behavior: 'smooth' })
+    } else {
+      el.scrollBy({ left: 460, behavior: 'smooth' })
+    }
+  }
+
+  const resetAutoScroll = () => {
+    if (autoScrollRef.current) clearInterval(autoScrollRef.current)
+    autoScrollRef.current = setInterval(autoScroll, 4000)
+  }
+
+  useEffect(() => {
+    resetAutoScroll()
+    return () => {
+      if (autoScrollRef.current) clearInterval(autoScrollRef.current)
+    }
+  }, [])
 
   return (
     <section id="testimonials" className={styles.section}>
@@ -23,7 +49,15 @@ export default function Testimonials() {
         </div>
       </div>
 
-      <div className={styles.track} ref={trackRef} role="list">
+      <div 
+        className={styles.track} 
+        ref={trackRef} 
+        role="list"
+        onMouseEnter={() => {
+          if (autoScrollRef.current) clearInterval(autoScrollRef.current)
+        }}
+        onMouseLeave={resetAutoScroll}
+      >
         {TESTIMONIALS.map((t) => (
           <article key={t.name} className={styles.card} role="listitem">
             <span className={styles.quoteMark} aria-hidden="true">"</span>
