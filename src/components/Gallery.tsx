@@ -77,8 +77,6 @@ export default function Gallery() {
 
   const delayClasses = ['', 'reveal-delay-1', 'reveal-delay-2']
 
-  const shuffledItems = [...GALLERY_ITEMS].sort(() => Math.random() - 0.5)
-
   return (
     <>
       <section id="gallery" className={styles.section}>
@@ -91,7 +89,7 @@ export default function Gallery() {
         </div>
 
         <div className={styles.grid}>
-          {shuffledItems.map((item, i) => (
+          {GALLERY_ITEMS.map((item, i) => (
             <TiltCard
               key={i}
               item={item}
