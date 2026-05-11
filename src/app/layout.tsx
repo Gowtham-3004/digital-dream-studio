@@ -149,6 +149,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Prevent image saving/downloading */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          (function(){
+            function blockImg(e){ if(e.target.tagName==='IMG') e.preventDefault(); }
+            document.addEventListener('contextmenu', blockImg);
+            document.addEventListener('dragstart',   blockImg);
+          })();
+        `}} />
       </head>
       <body>
         {children}
