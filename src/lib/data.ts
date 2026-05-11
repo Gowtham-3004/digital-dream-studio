@@ -45,49 +45,64 @@ export const SERVICES = [
 
 export const GALLERY_ITEMS = [
   {
-    src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80',
+    src: '/images/1.jpg',
     alt: 'Wedding couple bridal portrait',
     label: 'Bridal Portrait',
   },
   {
-    src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+    src: '/images/2.jpg',
     alt: 'Wedding ceremony sacred vows',
     label: 'Sacred Vows',
   },
   {
-    src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80',
+    src: '/images/3.jpg',
     alt: 'Wedding reception evening celebration',
     label: 'Reception Evening',
   },
   {
-    src: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80',
+    src: '/images/4.jpg',
     alt: 'Candid couple portrait moments',
     label: 'Candid Moments',
   },
   {
-    src: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=800&q=80',
+    src: '/images/5.jpg',
     alt: 'Wedding floral detail arrangement',
     label: 'Floral Details',
   },
   {
-    src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80',
+    src: '/images/6.jpg',
     alt: 'Pre-wedding outdoor shoot',
     label: 'Pre-Wedding',
   },
   {
-    src: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=800&q=80',
+    src: '/images/7.jpg',
     alt: 'Golden hour wedding portrait',
     label: 'Golden Hour',
   },
   {
-    src: 'https://images.unsplash.com/photo-1525772764200-be829a350797?w=800&q=80',
+    src: '/images/8.jpg',
     alt: 'Wedding ceremony hall',
     label: 'Ceremony',
   },
   {
-    src: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=800&q=80',
+    src: '/images/9.jpg',
     alt: 'Fine wedding detail decor',
     label: 'Fine Details',
+  },
+  {
+    src: '/images/10.jpg',
+    alt: 'Wedding celebration moments',
+    label: 'Celebration',
+  },
+  {
+    src: '/images/11.jpg',
+    alt: 'Couple intimate portrait',
+    label: 'Intimate Moments',
+  },
+  {
+    src: '/images/12.jpg',
+    alt: 'Wedding day highlights',
+    label: 'Highlights',
   },
 ]
 

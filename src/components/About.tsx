@@ -9,7 +9,7 @@ export default function About() {
         {/* Image stack */}
         <div className={`${styles.imgStack} reveal`}>
           <Image
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
+            src="/images/9.jpg"
             alt="Digital Dream Studios team photographing a wedding"
             width={600}
             height={800}
@@ -17,7 +17,7 @@ export default function About() {
             sizes="(max-width: 900px) 100vw, 45vw"
           />
           <Image
-            src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400&q=80"
+            src="/images/10.jpg"
             alt="Behind the scenes at a wedding shoot"
             width={400}
             height={400}
