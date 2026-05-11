@@ -146,3 +146,5 @@ export const CONTACT_INFO = {
   instagram: 'https://www.instagram.com',
   address: '45/68 Kamarajar Street, Lakshmipuram\nThiruvanmiyur, Chennai — 600041',
 }
+
+//test normal

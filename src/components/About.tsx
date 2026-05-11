@@ -16,14 +16,14 @@ export default function About() {
             className={styles.imgMain}
             sizes="(max-width: 900px) 100vw, 45vw"
           />
-          <Image
+          {/* <Image
             src="/images/10.jpg"
             alt="Behind the scenes at a wedding shoot"
             width={400}
             height={400}
             className={styles.imgAccent}
             sizes="(max-width: 900px) 0vw, 25vw"
-          />
+          /> */}
         </div>
 
         {/* Text */}

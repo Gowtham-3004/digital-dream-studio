@@ -137,7 +137,7 @@ export default function Services() {
       {/* Bottom CTA bar */}
       <div className={`${styles.cta} reveal`}>
         <p className={styles.ctaText}>
-          Not sure which package fits?
+          Want to know more about the package?
         </p>
         <a href="#contact" className="btn-primary">Let&apos;s talk</a>
       </div>

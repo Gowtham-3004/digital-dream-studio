@@ -57,9 +57,9 @@ function TiltCard({
         sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
         loading="lazy"
       />
-      <div className={styles.overlay}>
+      {/* <div className={styles.overlay}>
         <span className={styles.overlayLabel}>{item.label}</span>
-      </div>
+      </div> */}
       {/* Shimmer glare that follows mouse */}
       <div className={styles.glare} aria-hidden="true" />
     </button>

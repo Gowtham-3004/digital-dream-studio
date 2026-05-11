@@ -84,11 +84,11 @@ export const GALLERY_ITEMS = [
     alt: 'Wedding ceremony hall',
     label: 'Ceremony',
   },
-  {
-    src: '/images/9.jpg',
-    alt: 'Fine wedding detail decor',
-    label: 'Fine Details',
-  },
+  // {
+  //   src: '/images/9.jpg',
+  //   alt: 'Fine wedding detail decor',
+  //   label: 'Fine Details',
+  // },
   {
     src: '/images/10.jpg',
     alt: 'Wedding celebration moments',
@@ -108,35 +108,35 @@ export const GALLERY_ITEMS = [
 
 export const TESTIMONIALS = [
   {
-    initial: 'A',
-    text: 'Digital Dream Studios didn\'t just photograph our wedding — they told our story with breathtaking beauty. Every image is a painting. We cry every time we look at the album.',
-    name: 'Aanya & Rohan Mehta',
-    event: 'Grand Hyatt Mumbai, 2024',
+    initial: 'E',
+    text: 'I first met him when he clicked my ID card picture as a VisCom student, back when I had just joined college as an Assistant Professor. Curious, I asked him what he did, and he spoke with passion about his projects, his studio work, and his dreams. Since then, From that day till now, I’ve watched him, grow into a man, steadily walking toward his dream. I wish him all the very best for every future endeavor. May his lens continue to tell stories that touch hearts.',
+    name: 'Evangaline',
+    event: 'Chennai, 2024',
+  },
+  {
+    initial: 'K',
+    text: 'The event was amazing. They  patiently captured every moment of our engagement, and each picture truly speaks for itself ❤️ 🤩 The final photos, video, and albums turned out awesome!!! Their professionalism and creativity exceeded our expectations. We’re so grateful for these timeless memories. Thanks for the Digital Dream Studios ❤️✨',
+    name: 'Kirthika',
+    event: 'Ranipet , 2026',
   },
   {
     initial: 'P',
-    text: 'From the mehendi to the reception, they captured everything. The team was invisible yet everywhere. The films feel like a Bollywood production — cinematic, emotional, perfect.',
-    name: 'Priya & Arjun Sharma',
-    event: 'Leela Palace Chennai, 2024',
+    text: 'We booked Digital Dream Studios for our son’s first birthday, and they did an excellent job. The photographs turned out beautifully, and the album exceeded our expectations in both quality and presentation. We are truly happy with their work and would gladly recommend them.',
+    name: 'Parthiban',
+    event: 'Chennai, 2025',
   },
   {
-    initial: 'N',
-    text: 'They flew out to Udaipur for our destination wedding without a single complaint. The sunset photos at the City Palace are now our most treasured possessions.',
-    name: 'Neha & Vikram Kapoor',
-    event: 'City Palace Udaipur, 2023',
+    initial: 'V',
+    text: 'A heartfelt thank you to Dream Studios for the incredible photography and videography at my parents’ 25th wedding anniversary. Every precious moment was captured beautifully with creativity and professionalism. The photos and video were stunning and brought back all the love and joy of the celebration. We are truly grateful for your hard work and dedication. Thank you for making this special milestone unforgettable for our family! Hope to work soon with future plans of photography of future occasions!!!',
+    name: 'Vignesh',
+    event: 'Chennai, 2025',
   },
-  {
-    initial: 'S',
-    text: 'We are a Christian couple who wanted classic, elegant photos. Digital Dream Studios understood our vision perfectly and delivered beyond our dreams. Simply outstanding.',
-    name: 'Sarah & Daniel Thomas',
-    event: 'The Ritz-Carlton Bangalore, 2023',
-  },
-  {
-    initial: 'M',
-    text: 'The candid shots are unreal. They caught my father\'s face when he first saw me in my lehenga, and that photograph alone made me sob. Priceless. Book them. Now.',
-    name: 'Meera & Karthik Iyer',
-    event: 'ITC Grand Chola Chennai, 2024',
-  },
+  // {
+  //   initial: 'M',
+  //   text: 'The candid shots are unreal. They caught my father\'s face when he first saw me in my lehenga, and that photograph alone made me sob. Priceless. Book them. Now.',
+  //   name: 'Meera & Karthik Iyer',
+  //   event: 'ITC Grand Chola Chennai, 2024',
+  // },
 ]
 
 export const STATS = [
@@ -146,18 +146,19 @@ export const STATS = [
 ]
 
 export const MARQUEE_ITEMS = [
-  'Wedding Photography',
-  'Cinematic Films',
-  'Engagement Sessions',
-  'Pre-Wedding Shoots',
-  'Traditional Ceremonies',
-  'Destination Weddings',
+   'wedding photography',
+    'cinematic films',
+    'pre-wedding shoots',
+    'post-wedding shoots',
+    'birthday parties',
+    'corporate events',
+    'other events',
 ]
 
 export const CONTACT_INFO = {
-  email: 'Coming soon',
+  email: 'hello.digitaldreamstudios@gmail.com',
   phone: '+91 98410 21625',
   whatsapp: 'https://wa.me/919841021625',
-  instagram: 'https://www.instagram.com',
+  instagram: 'https://www.instagram.com/digital_dream_studios_?igsh=MWRrdDJweWlkaWt3MA==',
   address: '45/68 Kamarajar Street, Lakshmipuram\nThiruvanmiyur, Chennai — 600041',
 }

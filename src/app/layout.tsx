@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     'Tamil Nadu wedding photography',
     'bridal photography',
     'candid wedding photography',
+    'Wedding photography in Adyar', 
+    'besant Nagar', 
+    'Thiruvanmiyur'
   ],
   authors: [{ name: 'Digital Dream Studios' }],
   creator: 'Digital Dream Studios',

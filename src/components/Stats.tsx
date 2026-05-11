@@ -34,10 +34,10 @@ function StatCard({ target, label }: { target: number; label: string }) {
   }, [target])
 
   return (
-    <div className={`${styles.card} reveal`}>
-      <div className={styles.number}>
-        <span ref={numRef}>0</span>
-        <span>+</span>
+    <div className={`${styles.card} reveal`} style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+      <div className={styles.number} style={{ display: 'inline-flex', alignItems: 'center', whiteSpace: 'nowrap', gap: '0.25rem' }}>
+        <span ref={numRef} style={{ fontVariantNumeric: 'tabular-nums' }}>0</span>
+        <span style={{ display: 'inline-block', lineHeight: 1 }}>+</span>
       </div>
       <div className={styles.label}>{label}</div>
     </div>
