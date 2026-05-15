@@ -26,6 +26,22 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+
+    const lines = [
+      `*New Enquiry from Website*`,
+      ``,
+      `*Name:* ${form.name}`,
+      form.partner ? `*Partner:* ${form.partner}` : null,
+      `*Email:* ${form.email}`,
+      form.phone ? `*Phone:* ${form.phone}` : null,
+      form.date ? `*Event Date:* ${form.date}` : null,
+      form.service ? `*Service:* ${form.service}` : null,
+      form.message ? `*Message:* ${form.message}` : null,
+    ].filter(Boolean).join('\n')
+
+    const whatsappUrl = `https://wa.me/919841021625?text=${encodeURIComponent(lines)}`
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 3500)
   }
