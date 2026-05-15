@@ -47,11 +47,10 @@ export async function GET(
     return new NextResponse(data, {
       headers: {
         'Content-Type': CONTENT_TYPES[ext] ?? 'image/jpeg',
-        'Cache-Control': 'private, no-store, no-cache, must-revalidate',
+        'Cache-Control': 'private, max-age=300',
         'Content-Disposition': 'inline',
         'X-Content-Type-Options': 'nosniff',
         'Cross-Origin-Resource-Policy': 'same-origin',
-        'Pragma': 'no-cache',
       },
     })
   } catch {

@@ -141,7 +141,7 @@ export const TESTIMONIALS = [
     initial: 'R',
     text: 'Digital Dream Studios created wonderful memories for our 45th school reunion. The formal and candid photos and videos beautifully captured the spirit of the event and made it truly special. The team also organized engaging games and activities that everyone, across all age groups, enjoyed. Overall, it was a memorable celebration, and Digital Dream Studios played a major role in making it such a success. Best wishes to the entire team!',
     name: 'Radhika ',
-    event: 'Chennai, 2026',
+    event: 'Chennai, 2025',
   },
 ]
 

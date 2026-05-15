@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
       {
         source: '/api/image/:name*',
         headers: [
-          { key: 'Cache-Control', value: 'private, no-store, no-cache, must-revalidate' },
+          { key: 'Cache-Control', value: 'private, max-age=300' },
           { key: 'Cross-Origin-Resource-Policy', value: 'same-origin' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
         ],
