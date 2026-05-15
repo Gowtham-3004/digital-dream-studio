@@ -134,8 +134,14 @@ export const TESTIMONIALS = [
   {
     initial: 'M',
     text: 'Digital Dream Studios -  delivered exceptional work at my brother’s wedding. The final output truly exceeded our expectations, capturing every moment beautifully and professionally. I highly recommend them to anyone looking for a creative and dedicated photography team.',
-    name: 'Mani ',
-    event: 'Chennai , 2026',
+    name: 'Mani',
+    event: 'Chennai, 2026',
+  },
+  {
+    initial: 'R',
+    text: 'Digital Dream Studios created wonderful memories for our 45th school reunion. The formal and candid photos and videos beautifully captured the spirit of the event and made it truly special. The team also organized engaging games and activities that everyone, across all age groups, enjoyed. Overall, it was a memorable celebration, and Digital Dream Studios played a major role in making it such a success. Best wishes to the entire team!',
+    name: 'Radhika ',
+    event: 'Chennai, 2026',
   },
 ]
 
