@@ -86,6 +86,10 @@ const jsonLd = {
   url: 'https://digitaldreamstudios.in',
   telephone: '+919841021625',
   email: 'hello@digitaldreamstudios.in',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://digitaldreamstudios.in/logo.jpg',
+  },
   image: 'https://digitaldreamstudios.in/og-image.jpg',
   address: {
     '@type': 'PostalAddress',
