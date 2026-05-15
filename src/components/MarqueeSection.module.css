@@ -11,6 +11,8 @@
   gap: 80px;
   animation: marquee 20s linear infinite;
   width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .item {
@@ -34,9 +36,9 @@
 
 @keyframes marquee {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(calc(-50% - 40px));
+    transform: translate3d(calc(-50% - 40px), 0, 0);
   }
 }

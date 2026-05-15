@@ -79,37 +79,37 @@ export const GALLERY_ITEMS = [
     alt: 'Golden hour wedding portrait',
     label: 'Golden Hour',
   },
-  {
-    src: '/images/8.jpg',
-    alt: 'Wedding ceremony hall',
-    label: 'Ceremony',
-  },
   // {
-  //   src: '/images/9.jpg',
-  //   alt: 'Fine wedding detail decor',
-  //   label: 'Fine Details',
+  //   src: '/images/8.jpg',
+  //   alt: 'Wedding ceremony hall',
+  //   label: 'Ceremony',
   // },
+  {
+    src: '/images/9.jpg',
+    alt: 'Fine wedding detail decor',
+    label: 'Fine Details',
+  },
   {
     src: '/images/10.jpg',
     alt: 'Wedding celebration moments',
     label: 'Celebration',
   },
-  {
-    src: '/images/11.jpg',
-    alt: 'Couple intimate portrait',
-    label: 'Intimate Moments',
-  },
-  {
-    src: '/images/12.jpg',
-    alt: 'Wedding day highlights',
-    label: 'Highlights',
-  },
+  // {
+  //   src: '/images/11.jpg',
+  //   alt: 'Couple intimate portrait',
+  //   label: 'Intimate Moments',
+  // },
+  // {
+  //   src: '/images/12.jpg',
+  //   alt: 'Wedding day highlights',
+  //   label: 'Highlights',
+  // },
 ]
 
 export const TESTIMONIALS = [
   {
     initial: 'E',
-    text: 'I first met him when he clicked my ID card picture as a VisCom student, back when I had just joined college as an Assistant Professor. Curious, I asked him what he did, and he spoke with passion about his projects, his studio work, and his dreams. Since then, From that day till now, I’ve watched him, grow into a man, steadily walking toward his dream. I wish him all the very best for every future endeavor. May his lens continue to tell stories that touch hearts.',
+    text: 'I first met him when he clicked my ID card picture as a VisCom student, back when I had just joined college as an Assistant Professor. Curious, I asked him what he did, and he spoke with passion about his projects, his studio work, and his dreams. I invited him to an event at our home to capture moments. I was overjoyed with the outcome as every picture told a story, so real, so authentic, so full of life.Since then, From that day till now, I’ve watched him, grow into a man, steadily walking toward his dream. I wish him all the very best for every future endeavor. May his lens continue to tell stories that touch hearts.',
     name: 'Evangaline',
     event: 'Chennai, 2024',
   },
@@ -131,12 +131,12 @@ export const TESTIMONIALS = [
     name: 'Vignesh',
     event: 'Chennai, 2025',
   },
-  // {
-  //   initial: 'M',
-  //   text: 'The candid shots are unreal. They caught my father\'s face when he first saw me in my lehenga, and that photograph alone made me sob. Priceless. Book them. Now.',
-  //   name: 'Meera & Karthik Iyer',
-  //   event: 'ITC Grand Chola Chennai, 2024',
-  // },
+  {
+    initial: 'M',
+    text: 'Digital Dream Studios -  delivered exceptional work at my brother’s wedding. The final output truly exceeded our expectations, capturing every moment beautifully and professionally. I highly recommend them to anyone looking for a creative and dedicated photography team.',
+    name: 'Mani ',
+    event: 'Chennai , 2026',
+  },
 ]
 
 export const STATS = [

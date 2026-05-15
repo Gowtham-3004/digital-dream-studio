@@ -19,8 +19,7 @@
 .imgMain {
   width: 85%;
   height: auto;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  object-fit: contain;
   filter: brightness(0.82);
   display: block;
   transition: filter 0.5s ease;

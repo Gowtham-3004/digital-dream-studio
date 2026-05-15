@@ -141,6 +141,12 @@
 .group input:focus,
 .group select:focus,
 .group textarea:focus { border-color: var(--gold); }
+
+.group input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.7;
+  cursor: pointer;
+}
 .group input::placeholder,
 .group textarea::placeholder { color: var(--muted); font-weight: 300; }
 
