@@ -100,7 +100,7 @@
   gap: 24px;
 }
 
-.group { margin-bottom: 28px; }
+.group { margin-bottom: 28px; position: relative; }
 
 .group label {
   display: block;
@@ -144,11 +144,19 @@
 
 .group input[type="date"] {
   color-scheme: dark;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 16px 16px;
+  padding-right: 28px;
 }
 
 .group input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: brightness(0) invert(1);
-  opacity: 0.85;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  width: 28px;
+  height: 100%;
   cursor: pointer;
 }
 .group input::placeholder,
