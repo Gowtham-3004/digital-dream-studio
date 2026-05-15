@@ -24,7 +24,7 @@ export default function Contact() {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
     const lines = [
@@ -41,6 +41,18 @@ export default function Contact() {
 
     const whatsappUrl = `https://wa.me/919841021625?text=${encodeURIComponent(lines)}`
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+
+    const body = new FormData()
+    body.append('public_key', 'JLlcg4wp3AtPeAWLsLdIF5TM')
+    body.append('your_name', form.name)
+    body.append('field', form.partner)
+    body.append('email', form.email)
+    body.append('phone', form.phone)
+    body.append('field_2', form.date)
+    body.append('field_3', form.service)
+    body.append('message', form.message)
+
+    fetch('https://web2phone.co.uk/api/v1/submit/', { method: 'POST', body }).catch(() => {})
 
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 3500)
