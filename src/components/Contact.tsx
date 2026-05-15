@@ -44,13 +44,13 @@ export default function Contact() {
 
     const body = new FormData()
     body.append('public_key', 'JLlcg4wp3AtPeAWLsLdIF5TM')
-    body.append('your_name', form.name)
-    body.append('field', form.partner)
-    body.append('email', form.email)
-    body.append('phone', form.phone)
-    body.append('field_2', form.date)
-    body.append('field_3', form.service)
-    body.append('message', form.message)
+    body.append('field', form.name)
+    body.append('field_2', form.partner)
+    body.append('field_3', form.email)
+    body.append('field_4', form.phone)
+    body.append('field_5', form.date)
+    body.append('field_6', form.service)
+    body.append('field_7', form.message)
 
     fetch('https://web2phone.co.uk/api/v1/submit/', { method: 'POST', body }).catch(() => {})
 
