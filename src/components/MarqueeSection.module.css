@@ -8,11 +8,17 @@
 
 .track {
   display: flex;
-  gap: 80px;
-  animation: marquee 20s linear infinite;
+  animation: marquee 60s linear infinite;
   width: max-content;
   will-change: transform;
   backface-visibility: hidden;
+}
+
+.inner {
+  display: flex;
+  gap: 80px;
+  padding-right: 80px;
+  flex-shrink: 0;
 }
 
 .item {
@@ -35,10 +41,6 @@
 }
 
 @keyframes marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(calc(-50% - 40px), 0, 0);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }

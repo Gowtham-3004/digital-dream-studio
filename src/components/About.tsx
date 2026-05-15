@@ -15,6 +15,8 @@ export default function About() {
             height={800}
             className={styles.imgMain}
             sizes="(max-width: 900px) 100vw, 45vw"
+            unoptimized
+            draggable={false}
           />
           {/* <Image
             src="/images/10.jpg"
