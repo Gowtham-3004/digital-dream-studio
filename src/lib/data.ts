@@ -45,52 +45,52 @@ export const SERVICES = [
 
 export const GALLERY_ITEMS = [
   {
-    src: '/images/1.jpg',
+    src: '/api/image/1.jpg',
     alt: 'Wedding couple bridal portrait',
     label: 'Bridal Portrait',
   },
   {
-    src: '/images/2.jpg',
+    src: '/api/image/2.jpg',
     alt: 'Wedding ceremony sacred vows',
     label: 'Sacred Vows',
   },
   {
-    src: '/images/3.jpg',
+    src: '/api/image/3.jpg',
     alt: 'Wedding reception evening celebration',
     label: 'Reception Evening',
   },
   {
-    src: '/images/4.jpg',
+    src: '/api/image/4.jpg',
     alt: 'Candid couple portrait moments',
     label: 'Candid Moments',
   },
   {
-    src: '/images/5.jpg',
+    src: '/api/image/5.jpg',
     alt: 'Wedding floral detail arrangement',
     label: 'Floral Details',
   },
   {
-    src: '/images/6.jpg',
+    src: '/api/image/6.jpg',
     alt: 'Pre-wedding outdoor shoot',
     label: 'Pre-Wedding',
   },
   {
-    src: '/images/7.jpg',
+    src: '/api/image/7.jpg',
     alt: 'Golden hour wedding portrait',
     label: 'Golden Hour',
   },
   // {
-  //   src: '/images/8.jpg',
+  //   src: '/api/image/8.jpg',
   //   alt: 'Wedding ceremony hall',
   //   label: 'Ceremony',
   // },
   {
-    src: '/images/9.jpg',
+    src: '/api/image/9.jpg',
     alt: 'Fine wedding detail decor',
     label: 'Fine Details',
   },
   {
-    src: '/images/10.jpg',
+    src: '/api/image/10.jpg',
     alt: 'Wedding celebration moments',
     label: 'Celebration',
   },

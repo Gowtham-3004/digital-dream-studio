@@ -38,6 +38,10 @@ function TiltCard({
     card.style.setProperty('--ry', '0deg')
   }, [])
 
+  const blockInteraction = useCallback((e: React.MouseEvent | React.DragEvent | React.TouchEvent) => {
+    e.preventDefault()
+  }, [])
+
   return (
     <button
       ref={cardRef}
@@ -46,6 +50,8 @@ function TiltCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={() => onOpen(item.src, item.alt)}
+      onContextMenu={blockInteraction}
+      onDragStart={blockInteraction}
       aria-label={`Open image: ${item.label}`}
     >
       <Image
@@ -56,6 +62,8 @@ function TiltCard({
         className={styles.img}
         sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
         loading="lazy"
+        draggable={false}
+        unoptimized
       />
       {/* <div className={styles.overlay}>
         <span className={styles.overlayLabel}>{item.label}</span>
@@ -110,7 +118,12 @@ export default function Gallery() {
           onClick={close}
         >
           <button className={styles.lightboxClose} onClick={close} aria-label="Close lightbox">✕</button>
-          <div onClick={e => e.stopPropagation()} className={styles.lightboxImgWrap}>
+          <div
+            onClick={e => e.stopPropagation()}
+            onContextMenu={e => e.preventDefault()}
+            onDragStart={e => e.preventDefault()}
+            className={styles.lightboxImgWrap}
+          >
             <Image
               src={lightboxSrc}
               alt={lightboxAlt}
@@ -118,6 +131,8 @@ export default function Gallery() {
               height={1000}
               className={styles.lightboxImg}
               priority
+              draggable={false}
+              unoptimized
             />
           </div>
         </div>
