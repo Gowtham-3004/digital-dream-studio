@@ -52,10 +52,10 @@ export const metadata: Metadata = {
     siteName: 'Digital Dream Studios',
     title: 'Digital Dream Studios — We Make Your Memories Special',
     description:
-      'Premium wedding photography and cinematic films across India. Capturing love stories with elegance and depth.',
+      'Premium wedding photography and cinematic films across India. Capturing love stories with elegance and depth. Pre-wedding shoots, destination weddings, and traditional ceremonies. Book your session today.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/logo.jpg',
         width: 1200,
         height: 630,
         alt: 'Digital Dream Studios — Premium Wedding Photography',
@@ -66,8 +66,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Digital Dream Studios — We Make Your Memories Special',
     description:
-      'Premium wedding photography and cinematic films across India.',
-    images: ['/og-image.jpg'],
+      'Premium wedding photography and cinematic films across India. Capturing love stories with elegance and depth. Pre-wedding shoots, destination weddings, and traditional ceremonies. Book your session today.',
+    images: ['/logo.jpg'],
   },
   robots: {
     index: true,
