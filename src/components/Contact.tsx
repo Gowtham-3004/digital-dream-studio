@@ -16,6 +16,7 @@ const SERVICES = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [dateInputType, setDateInputType] = useState<'text' | 'date'>('text')
   const [form, setForm] = useState({
     name: '', partner: '', email: '', phone: '', date: '', service: '', message: '',
   })
@@ -170,7 +171,16 @@ export default function Contact() {
           <div className={styles.row}>
             <div className={styles.group}>
               <label htmlFor="date">Event Date</label>
-              <input id="date" name="date" type="date" value={form.date} onChange={handleChange} />
+              <input
+                id="date"
+                name="date"
+                type={dateInputType}
+                placeholder="DD-MM-YYYY"
+                value={form.date}
+                onChange={handleChange}
+                onFocus={() => setDateInputType('date')}
+                onBlur={() => { if (!form.date) setDateInputType('text') }}
+              />
             </div>
             <div className={styles.group}>
               <label htmlFor="service">Service Needed</label>
