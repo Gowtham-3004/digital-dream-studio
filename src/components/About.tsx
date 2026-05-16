@@ -9,7 +9,7 @@ export default function About() {
         {/* Image stack */}
         <div className={`${styles.imgStack} reveal`}>
           <Image
-            src="/api/image/8.jpg"
+            src="/images/8.jpg"
             alt="Digital Dream Studios team photographing a wedding"
             width={600}
             height={800}
