@@ -244,3 +244,23 @@
 @media (max-width: 600px) {
   .row { grid-template-columns: 1fr; }
 }
+
+/* Force white date text on mobile browsers (iOS Safari / Android Chrome) */
+@media (max-width: 900px) {
+  .group input[type="date"] {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+    color-scheme: dark;
+  }
+  .group input[type="date"]::-webkit-datetime-edit,
+  .group input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+  .group input[type="date"]::-webkit-datetime-edit-text,
+  .group input[type="date"]::-webkit-datetime-edit-month-field,
+  .group input[type="date"]::-webkit-datetime-edit-day-field,
+  .group input[type="date"]::-webkit-datetime-edit-year-field {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+  }
+}
