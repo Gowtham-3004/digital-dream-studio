@@ -152,6 +152,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${jost.variable}`}
     >
       <head>
+        <link rel="icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
