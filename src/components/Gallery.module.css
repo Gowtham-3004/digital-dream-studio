@@ -1,5 +1,18 @@
 .section {
   padding: 120px 40px;
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.28), transparent);
+  pointer-events: none;
 }
 
 .header {

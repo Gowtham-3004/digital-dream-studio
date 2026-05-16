@@ -94,6 +94,7 @@ export default function Hero() {
     <section id="hero" className={styles.hero}>
       <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
       <div className={styles.bg} aria-hidden="true" />
+      <div className={styles.vignette} aria-hidden="true" />
 
       <div className={styles.content}>
         {/* Eyebrow */}

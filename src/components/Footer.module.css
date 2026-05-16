@@ -1,42 +1,205 @@
 .footer {
   border-top: 1px solid var(--border);
-  padding: 48px 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: var(--bg);
 }
 
+/* ─── Ornamental tagline row ─── */
+.taglineRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 52px 60px 0;
+}
+
+.taglineLine {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201, 169, 110, 0.35));
+}
+.taglineLine:last-of-type {
+  background: linear-gradient(to left, transparent, rgba(201, 169, 110, 0.35));
+}
+
+.taglineGlyph {
+  color: var(--gold);
+  font-size: 0.5rem;
+  opacity: 0.55;
+  line-height: 1;
+}
+
+.taglineText {
+  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+/* ─── Main 3-column grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 60px 60px;
+}
+
+/* ─── Brand column ─── */
 .logo {
   font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--cream);
+  margin-bottom: 18px;
 }
-.logo span {
-  color: var(--gold);
+.logo span { color: var(--gold); }
+
+.brandDesc {
+  font-size: 0.84rem;
+  line-height: 1.85;
+  color: var(--muted);
+  max-width: 260px;
+  letter-spacing: 0.01em;
+  margin-bottom: 28px;
+  font-weight: 400;
 }
 
-.tagline {
-  font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
-  font-style: italic;
-  font-size: 1.4rem;
+/* ─── Social icons ─── */
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+.socialLink {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+  cursor: none;
+}
+.socialLink:hover {
+  border-color: var(--gold);
   color: var(--gold);
-  letter-spacing: 0.05em;
+  background: rgba(201, 169, 110, 0.06);
+  transform: translateY(-2px);
+}
+
+/* ─── Generic column ─── */
+.colTitle {
+  font-family: var(--font-jost, 'Jost', sans-serif);
+  font-size: 0.58rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  font-weight: 400;
+}
+
+.colLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.colLink {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+  cursor: none;
+  position: relative;
+  display: inline-block;
+}
+.colLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.colLink:hover { color: var(--gold); }
+.colLink:hover::after { width: 100%; }
+
+/* ─── Contact column ─── */
+.contact {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.contactItem {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.3s;
+  cursor: none;
+  display: block;
+  line-height: 1.5;
+}
+.contactItem:hover { color: var(--gold); }
+
+.address {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-style: normal;
+  letter-spacing: 0.02em;
+  line-height: 1.75;
+}
+
+/* ─── Bottom copyright bar ─── */
+.bottom {
+  border-top: 1px solid var(--border);
+  padding: 22px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copy {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: var(--muted);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
+/* ─── Responsive ─── */
 @media (max-width: 900px) {
-  .footer {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    padding: 40px 24px;
+  .taglineRow { padding: 40px 24px 0; }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 48px 24px;
   }
+  .brand { grid-column: 1 / -1; }
+  .brandDesc { max-width: 100%; }
+  .bottom { padding: 20px 24px; }
+}
+
+@media (max-width: 500px) {
+  .grid { grid-template-columns: 1fr; }
+  .taglineText { font-size: 0.9rem; white-space: normal; text-align: center; }
+  .taglineLine { display: none; }
+}
+
+/* ─── Touch devices: restore default cursor ─── */
+@media (hover: none) {
+  .socialLink, .colLink, .contactItem { cursor: auto; }
 }

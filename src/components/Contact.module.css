@@ -140,7 +140,23 @@
 }
 .group input:focus,
 .group select:focus,
-.group textarea:focus { border-color: var(--gold); }
+.group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px -4px rgba(201, 169, 110, 0.18);
+}
+
+.group::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.group:focus-within::after { width: 100%; }
 
 .group input[type="date"] {
   color-scheme: dark;
@@ -149,6 +165,13 @@
   background-position: right 2px center;
   background-size: 16px 16px;
   padding-right: 28px;
+}
+
+.group input[type="date"]::-webkit-datetime-edit-text,
+.group input[type="date"]::-webkit-datetime-edit-month-field,
+.group input[type="date"]::-webkit-datetime-edit-day-field,
+.group input[type="date"]::-webkit-datetime-edit-year-field {
+  color: #ffffff;
 }
 
 .group input[type="date"]::-webkit-calendar-picker-indicator {

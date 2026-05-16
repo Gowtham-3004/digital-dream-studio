@@ -307,3 +307,37 @@ body::before {
 .section-label.label-visible::before {
   transform: scaleX(1);
 }
+
+/* ─── Ornamental section divider ─── */
+.ornamentDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0;
+  opacity: 0.32;
+  pointer-events: none;
+  user-select: none;
+}
+.ornamentDivider::before,
+.ornamentDivider::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+.ornamentDivider::after {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+.ornamentDivider span {
+  color: var(--gold);
+  font-size: 0.42rem;
+  line-height: 1;
+}
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+* { scrollbar-width: thin; scrollbar-color: var(--gold-dark) var(--bg); }

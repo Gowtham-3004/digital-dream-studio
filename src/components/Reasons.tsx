@@ -50,7 +50,7 @@ export default function Reasons() {
   return (
     <section id="reasons" className={styles.section}>
       <div className={styles.header}>
-        <p className="section-label reveal">Why Us</p>
+        <p className="section-label reveal" style={{ justifyContent: 'center' }}>Why Us</p>
         <h2 className={`section-title reveal reveal-delay-1 ${styles.title}`}>
           3 Reasons to<br /><em>Choose&nbsp;Us</em>
         </h2>

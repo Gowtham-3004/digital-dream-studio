@@ -26,12 +26,16 @@ export default function Home() {
       <main>
         <Hero />
         <MarqueeSection />
+        <div className="ornamentDivider" aria-hidden="true"><span>◆</span></div>
         <Stats />
         <Gallery />
+        <div className="ornamentDivider" aria-hidden="true"><span>◆</span></div>
         <Services />
         <About />
+        <div className="ornamentDivider" aria-hidden="true"><span>◆</span></div>
         <Reasons />
         <Testimonials />
+        <div className="ornamentDivider" aria-hidden="true"><span>◆</span></div>
         <Contact />
       </main>
 

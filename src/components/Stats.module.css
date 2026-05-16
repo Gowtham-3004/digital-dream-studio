@@ -79,6 +79,25 @@
   color: var(--muted);
   margin-top: 4px;
 }
+.label::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+  margin: 8px auto 0;
+  opacity: 0.4;
+}
+
+.suffix {
+  display: inline-block;
+  line-height: 1;
+  color: var(--gold);
+  -webkit-text-fill-color: var(--gold);
+  font-size: 0.65em;
+  vertical-align: super;
+  margin-left: 0.1em;
+}
 
 @media (max-width: 600px) {
   .section { padding: 60px 24px; }
