@@ -308,31 +308,45 @@ body::before {
   transform: scaleX(1);
 }
 
-/* ─── Ornamental section divider ─── */
+/* ─── Ornamental section divider — zero height, overlays existing gap ─── */
 .ornamentDivider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  padding: 0;
-  opacity: 0.32;
+  /* height: 0; */
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  opacity: 0.38;
   pointer-events: none;
   user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 36px;
 }
 .ornamentDivider::before,
 .ornamentDivider::after {
   content: '';
+  position: absolute;
+  top: 0;
   height: 1px;
   width: 60px;
+}
+.ornamentDivider::before {
+  right: calc(50% + 12px);
   background: linear-gradient(to right, transparent, var(--gold));
 }
 .ornamentDivider::after {
+  left: calc(50% + 12px);
   background: linear-gradient(to left, transparent, var(--gold));
 }
 .ornamentDivider span {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
   color: var(--gold);
   font-size: 0.42rem;
   line-height: 1;
+  display: block;
 }
 
 /* ─── Custom scrollbar ─── */

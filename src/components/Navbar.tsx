@@ -27,12 +27,24 @@ export default function Navbar() {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
       setDrawerVisible(true)
+      history.pushState({ menuOpen: true }, '')
     } else {
       document.body.style.overflow = ''
       // Let fade-out play before unmounting
       const t = setTimeout(() => setDrawerVisible(false), 320)
       return () => clearTimeout(t)
     }
+  }, [menuOpen])
+
+  // Back button closes the menu instead of navigating away
+  useEffect(() => {
+    const onPopState = (e: PopStateEvent) => {
+      if (menuOpen && !e.state?.menuOpen) {
+        setMenuOpen(false)
+      }
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
   }, [menuOpen])
 
   useEffect(() => {

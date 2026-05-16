@@ -125,6 +125,15 @@ export default function Contact() {
                 <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.073 23.27a.75.75 0 00.916.916l5.412-1.46A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.028-1.385l-.36-.214-3.733 1.008 1.008-3.733-.214-.36A9.818 9.818 0 1112 21.818z"/>
               </svg>
             </a>
+            <a
+              href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+              className={`social-link ${styles.socialLink}`}
+              aria-label="Call us"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91A16 16 0 0015.1 17.1l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              </svg>
+            </a>
           </div>
         </div>
 

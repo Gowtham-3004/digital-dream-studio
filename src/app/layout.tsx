@@ -90,7 +90,7 @@ const jsonLd = {
     '@type': 'ImageObject',
     url: 'https://digitaldreamstudios.in/logo.jpg',
   },
-  image: 'https://digitaldreamstudios.in/og-image.jpg',
+  image: 'https://digitaldreamstudios.in/logo.jpg',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '45/68 Kamarajar Street, Lakshmipuram, Thiruvanmiyur',

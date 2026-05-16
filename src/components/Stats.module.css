@@ -100,7 +100,7 @@
 }
 
 @media (max-width: 600px) {
-  .section { padding: 60px 24px; }
+  .section { padding: 72px 24px; }
   .grid    { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
   .number  { font-size: 3.5rem; }
 }

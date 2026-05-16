@@ -1,5 +1,5 @@
 .section {
-  padding: 120px 60px;
+  padding: 100px 60px;
 }
 
 .inner {
@@ -169,12 +169,16 @@
   padding-right: 28px;
 }
 
+.group input[type="date"]::-webkit-datetime-edit,
+.group input[type="date"]::-webkit-datetime-edit-fields-wrapper,
 .group input[type="date"]::-webkit-datetime-edit-text,
 .group input[type="date"]::-webkit-datetime-edit-month-field,
 .group input[type="date"]::-webkit-datetime-edit-day-field,
-.group input[type="date"]::-webkit-datetime-edit-year-field {
+.group input[type="date"]::-webkit-datetime-edit-year-field,
+.group input[type="date"]::-webkit-inner-spin-button {
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
+  opacity: 1;
 }
 
 .group input[type="date"]::-webkit-calendar-picker-indicator {
@@ -234,7 +238,7 @@
 
 /* Mobile */
 @media (max-width: 900px) {
-  .section { padding: 80px 24px; }
+  .section { padding: 72px 24px; }
   .inner   { grid-template-columns: 1fr; gap: 56px; }
 }
 @media (max-width: 600px) {
