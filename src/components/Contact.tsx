@@ -184,7 +184,7 @@ export default function Contact() {
             </div>
             <div className={styles.group}>
               <label htmlFor="service">Service Needed</label>
-              <select id="service" name="service" value={form.service} onChange={handleChange}>
+              <select id="service" name="service" value={form.service} onChange={handleChange} data-placeholder={!form.service ? 'true' : undefined}>
                 <option value="">Select a service</option>
                 {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
