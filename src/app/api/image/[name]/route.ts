@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { readFile } from 'fs/promises'
+import { readFile, stat } from 'fs/promises'
 import path from 'path'
+import crypto from 'crypto'
 
 const ALLOWED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp'])
 
@@ -42,12 +43,24 @@ export async function GET(
 
   try {
     const imagePath = path.join(process.cwd(), 'private-images', name)
-    const data = await readFile(imagePath)
+    const [data, fileStat] = await Promise.all([readFile(imagePath), stat(imagePath)])
+
+    const etag = `"${crypto.createHash('md5').update(data).digest('hex')}"`
+    const lastModified = fileStat.mtime.toUTCString()
+
+    // Conditional request — return 304 if client already has this version
+    const ifNoneMatch = request.headers.get('if-none-match')
+    const ifModifiedSince = request.headers.get('if-modified-since')
+    if (ifNoneMatch === etag || ifModifiedSince === lastModified) {
+      return new NextResponse(null, { status: 304 })
+    }
 
     return new NextResponse(data, {
       headers: {
         'Content-Type': CONTENT_TYPES[ext] ?? 'image/jpeg',
-        'Cache-Control': 'private, max-age=300',
+        'Cache-Control': 'private, max-age=604800, immutable',
+        'ETag': etag,
+        'Last-Modified': lastModified,
         'Content-Disposition': 'inline',
         'X-Content-Type-Options': 'nosniff',
         'Cross-Origin-Resource-Policy': 'same-origin',

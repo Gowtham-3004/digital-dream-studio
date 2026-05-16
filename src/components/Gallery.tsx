@@ -10,10 +10,12 @@ function TiltCard({
   item,
   delayClass,
   onOpen,
+  priority = false,
 }: {
   item: { src: string; alt: string; label: string }
   delayClass: string
   onOpen: (src: string, alt: string) => void
+  priority?: boolean
 }) {
   const cardRef = useRef<HTMLButtonElement>(null)
   const rafRef  = useRef<number>(0)
@@ -61,7 +63,8 @@ function TiltCard({
         height={800}
         className={styles.img}
         sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-        loading="lazy"
+        loading={priority ? 'eager' : 'lazy'}
+        priority={priority}
         draggable={false}
         unoptimized
       />
@@ -103,6 +106,7 @@ export default function Gallery() {
               item={item}
               delayClass={delayClasses[i % 3]}
               onOpen={open}
+              priority={i < 3}
             />
           ))}
         </div>
