@@ -1,0 +1,114 @@
+.section {
+  background: var(--bg2);
+  padding: 120px 60px;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 72px;
+}
+
+.title {
+  margin-top: 16px;
+}
+
+/* ── 3-column grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--bg2);
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.45s ease;
+}
+.card:hover { background: #131110; }
+
+/* gold bottom accent */
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card:hover::after { width: 70%; }
+
+/* ambient glow orb */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at center, rgba(201, 169, 110, 0.07) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.card:hover::before { opacity: 1; }
+
+/* ── Icon ── */
+.iconWrap {
+  width: 56px;
+  height: 56px;
+  color: var(--gold);
+  transition: color 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card:hover .iconWrap {
+  color: var(--gold-light);
+  transform: translateY(-4px) scale(1.08);
+}
+.iconWrap svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Label ── */
+.label {
+  font-family: var(--font-jost, 'Jost', sans-serif);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0;
+}
+
+/* ── Description ── */
+.desc {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .section { padding: 80px 24px; }
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  .card { padding: 48px 32px; }
+}
+
+@media (max-width: 480px) {
+  .header { margin-bottom: 48px; }
+}

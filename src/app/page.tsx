@@ -7,6 +7,7 @@ import Stats          from '@/components/Stats'
 import Gallery        from '@/components/Gallery'
 import Services       from '@/components/Services'
 import About          from '@/components/About'
+import Reasons        from '@/components/Reasons'
 import Testimonials   from '@/components/Testimonials'
 import Contact        from '@/components/Contact'
 import Footer         from '@/components/Footer'
@@ -29,6 +30,7 @@ export default function Home() {
         <Gallery />
         <Services />
         <About />
+        <Reasons />
         <Testimonials />
         <Contact />
       </main>
