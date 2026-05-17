@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { track } from '@vercel/analytics'
 import styles from './Hero.module.css'
 
 // Splits a string into word-span pairs for the slide-up reveal
@@ -130,8 +131,8 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className={styles.ctas} style={{ animationDelay: '1.25s' } as React.CSSProperties}>
-          <a href="#gallery" className="btn-primary">View Portfolio</a>
-          <a href="#contact" className="btn-outline">Book Us Now</a>
+          <a href="#gallery" className="btn-primary" onClick={() => track('hero_cta_click', { cta: 'view_portfolio' })}>View Portfolio</a>
+          <a href="#contact" className="btn-outline" onClick={() => track('hero_cta_click', { cta: 'book_now' })}>Book Us Now</a>
         </div>
       </div>
 

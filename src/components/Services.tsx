@@ -1,6 +1,8 @@
+'use client'
+
+import { track } from '@vercel/analytics'
 import styles from './Services.module.css'
 
-// Server Component — CSS-only hover interactions, no JS needed
 export default function Services() {
   return (
     <section id="services" className={styles.section}>
@@ -19,7 +21,7 @@ export default function Services() {
       <div className={styles.grid}>
 
         {/* Row 1 — two featured hero cards */}
-        <div className={`${styles.card} ${styles.cardFeatured} reveal`}>
+        <div className={`${styles.card} ${styles.cardFeatured} reveal`} onClick={() => track('service_click', { service: 'Wedding Photography' })}>
           <span className={styles.cardNum}>01</span>
           <div className={styles.cardBg} style={{ background: 'radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.12) 0%, transparent 70%)' }} />
           <div className={styles.cardContent}>
@@ -36,7 +38,7 @@ export default function Services() {
           </div>
         </div>
 
-        <div className={`${styles.card} ${styles.cardFeatured} ${styles.cardDark} reveal reveal-delay-1`}>
+        <div className={`${styles.card} ${styles.cardFeatured} ${styles.cardDark} reveal reveal-delay-1`} onClick={() => track('service_click', { service: 'Cinematic Films' })}>
           <span className={styles.cardNum}>02</span>
           <div className={styles.cardBg} style={{ background: 'radial-gradient(ellipse at 70% 40%, rgba(201,169,110,0.1) 0%, transparent 70%)' }} />
           <div className={styles.cardContent}>
@@ -54,7 +56,7 @@ export default function Services() {
         </div>
 
         {/* Row 2 — three medium cards */}
-        <div className={`${styles.card} ${styles.cardMedium} reveal`}>
+        <div className={`${styles.card} ${styles.cardMedium} reveal`} onClick={() => track('service_click', { service: 'Pre-Wedding Shoots' })}>
           <span className={styles.cardNum}>03</span>
           <div className={styles.cardContent}>
             <h3 className={styles.cardName}>Pre-Wedding<br />Shoots</h3>
@@ -69,7 +71,7 @@ export default function Services() {
           </div>
         </div>
 
-        <div className={`${styles.card} ${styles.cardMedium} ${styles.cardDark} reveal reveal-delay-1`}>
+        <div className={`${styles.card} ${styles.cardMedium} ${styles.cardDark} reveal reveal-delay-1`} onClick={() => track('service_click', { service: 'Post-Wedding Shoots' })}>
           <span className={styles.cardNum}>04</span>
           <div className={styles.cardContent}>
             <h3 className={styles.cardName}>Post-Wedding<br />Shoots</h3>
@@ -84,7 +86,7 @@ export default function Services() {
           </div>
         </div>
 
-        <div className={`${styles.card} ${styles.cardMedium} reveal reveal-delay-2`}>
+        <div className={`${styles.card} ${styles.cardMedium} reveal reveal-delay-2`} onClick={() => track('service_click', { service: 'Birthday Parties' })}>
           <span className={styles.cardNum}>05</span>
           <div className={styles.cardContent}>
             <h3 className={styles.cardName}>Birthday<br />Parties</h3>
@@ -100,7 +102,7 @@ export default function Services() {
         </div>
 
         {/* Row 3 — wide card + narrow card */}
-        <div className={`${styles.card} ${styles.cardWide} ${styles.cardDark} reveal`}>
+        <div className={`${styles.card} ${styles.cardWide} ${styles.cardDark} reveal`} onClick={() => track('service_click', { service: 'Corporate Events' })}>
           <span className={styles.cardNum}>06</span>
           <div className={styles.cardBg} style={{ background: 'radial-gradient(ellipse at 80% 50%, rgba(201,169,110,0.08) 0%, transparent 60%)' }} />
           <div className={styles.cardContent}>
@@ -117,7 +119,7 @@ export default function Services() {
           </div>
         </div>
 
-        <div className={`${styles.card} ${styles.cardNarrow} reveal reveal-delay-1`}>
+        <div className={`${styles.card} ${styles.cardNarrow} reveal reveal-delay-1`} onClick={() => track('service_click', { service: 'Other Events' })}>
           <span className={styles.cardNum}>07</span>
           <div className={styles.cardContent}>
             <h3 className={styles.cardName}>Other<br />Events</h3>
@@ -139,7 +141,7 @@ export default function Services() {
         <p className={styles.ctaText}>
           Want to know more about the package?
         </p>
-        <a href="#contact" className="btn-primary">Let&apos;s talk</a>
+        <a href="#contact" className="btn-primary" onClick={() => track('services_cta_click')}>Let&apos;s talk</a>
       </div>
     </section>
   )

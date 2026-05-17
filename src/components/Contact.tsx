@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { track } from '@vercel/analytics'
 import { CONTACT_INFO } from '@/lib/data'
 import styles from './Contact.module.css'
 
@@ -39,6 +40,7 @@ export default function Contact() {
     web2phoneBody.append('field_7', form.message)
 
     setStatus('loading')
+    track('contact_form_submit', { service: form.service || 'unselected' })
 
     try {
       const [sheetsRes] = await Promise.allSettled([
@@ -54,8 +56,14 @@ export default function Contact() {
       ])
 
       const ok = sheetsRes.status === 'fulfilled' && sheetsRes.value.ok
+      if (ok) {
+        track('contact_form_success', { service: form.service || 'unselected' })
+      } else {
+        track('contact_form_error')
+      }
       setStatus(ok ? 'success' : 'error')
     } catch {
+      track('contact_form_error')
       setStatus('error')
     }
 
