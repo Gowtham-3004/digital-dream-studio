@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
 import { CONTACT_INFO } from '@/lib/data'
 import styles from './Contact.module.css'
 
@@ -15,7 +15,7 @@ const SERVICES = [
 ]
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [dateInputType, setDateInputType] = useState<'text' | 'date'>('text')
   const [form, setForm] = useState({
     name: '', partner: '', email: '', phone: '', date: '', service: '', message: '',
@@ -25,7 +25,7 @@ export default function Contact() {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
 
     const web2phoneBody = new FormData()
@@ -38,26 +38,28 @@ export default function Contact() {
     web2phoneBody.append('field_6', form.service)
     web2phoneBody.append('field_7', form.message)
 
-    const sheetsPayload = {
-      ...form,
-      timestamp: new Date().toISOString(),
+    setStatus('loading')
+
+    try {
+      const [sheetsRes] = await Promise.allSettled([
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(form),
+        }),
+        fetch('https://web2phone.co.uk/api/v1/submit/', {
+          method: 'POST',
+          body: web2phoneBody,
+        }),
+      ])
+
+      const ok = sheetsRes.status === 'fulfilled' && sheetsRes.value.ok
+      setStatus(ok ? 'success' : 'error')
+    } catch {
+      setStatus('error')
     }
 
-    // const appsScriptUrl = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL
-    const appsScriptUrl = "https://script.google.com/macros/s/AKfycbxAsTJyOSMnlZyYErWDV0ErYPoH2HTMXR8M57d4f3ZqOQet_pxtfNC2cmRSJHgiKG30sA/exec"
-    await Promise.allSettled([
-      fetch('https://web2phone.co.uk/api/v1/submit/', { method: 'POST', body: web2phoneBody }),
-      appsScriptUrl
-        ? fetch(appsScriptUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(sheetsPayload),
-          })
-        : Promise.resolve(),
-    ])
-
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3500)
+    setTimeout(() => setStatus('idle'), 3500)
   }
 
   return (
@@ -199,9 +201,10 @@ export default function Contact() {
 
           <button
             type="submit"
-            className={`${styles.submit} ${submitted ? styles.submitSuccess : ''}`}
+            disabled={status === 'loading'}
+            className={`${styles.submit} ${status === 'success' ? styles.submitSuccess : ''} ${status === 'error' ? styles.submitError : ''}`}
           >
-            {submitted ? 'Message Sent ✓' : 'Send Message →'}
+            {status === 'loading' ? 'Sending…' : status === 'success' ? 'Message Sent ✓' : status === 'error' ? 'Send Failed ✕' : 'Send Message →'}
           </button>
         </form>
       </div>

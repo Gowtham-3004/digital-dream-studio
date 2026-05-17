@@ -235,9 +235,21 @@
 }
 .submit:hover { background: var(--gold-light); transform: translateY(-1px); }
 
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .submitSuccess {
   background: #3d6b4a !important;
   color: #e8f5ec !important;
+  letter-spacing: 0.2em;
+}
+
+.submitError {
+  background: #6b3d3d !important;
+  color: #f5e8e8 !important;
   letter-spacing: 0.2em;
 }
 
