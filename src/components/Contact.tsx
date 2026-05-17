@@ -28,32 +28,33 @@ export default function Contact() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    const lines = [
-      `*New Enquiry from Website*`,
-      ``,
-      `*Name:* ${form.name}`,
-      form.partner ? `*Partner:* ${form.partner}` : null,
-      `*Email:* ${form.email}`,
-      form.phone ? `*Phone:* ${form.phone}` : null,
-      form.date ? `*Event Date:* ${form.date}` : null,
-      form.service ? `*Service:* ${form.service}` : null,
-      form.message ? `*Message:* ${form.message}` : null,
-    ].filter(Boolean).join('\n')
+    const web2phoneBody = new FormData()
+    web2phoneBody.append('public_key', 'JLlcg4wp3AtPeAWLsLdIF5TM')
+    web2phoneBody.append('field', form.name)
+    web2phoneBody.append('field_2', form.partner)
+    web2phoneBody.append('field_3', form.email)
+    web2phoneBody.append('field_4', form.phone)
+    web2phoneBody.append('field_5', form.date)
+    web2phoneBody.append('field_6', form.service)
+    web2phoneBody.append('field_7', form.message)
 
-    const whatsappUrl = `https://wa.me/919841021625?text=${encodeURIComponent(lines)}`
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+    const sheetsPayload = {
+      ...form,
+      timestamp: new Date().toISOString(),
+    }
 
-    const body = new FormData()
-    body.append('public_key', 'JLlcg4wp3AtPeAWLsLdIF5TM')
-    body.append('field', form.name)
-    body.append('field_2', form.partner)
-    body.append('field_3', form.email)
-    body.append('field_4', form.phone)
-    body.append('field_5', form.date)
-    body.append('field_6', form.service)
-    body.append('field_7', form.message)
-
-    fetch('https://web2phone.co.uk/api/v1/submit/', { method: 'POST', body }).catch(() => {})
+    // const appsScriptUrl = process.env.NEXT_PUBLIC_APPS_SCRIPT_URL
+    const appsScriptUrl = "https://script.google.com/macros/s/AKfycbxAsTJyOSMnlZyYErWDV0ErYPoH2HTMXR8M57d4f3ZqOQet_pxtfNC2cmRSJHgiKG30sA/exec"
+    await Promise.allSettled([
+      fetch('https://web2phone.co.uk/api/v1/submit/', { method: 'POST', body: web2phoneBody }),
+      appsScriptUrl
+        ? fetch(appsScriptUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(sheetsPayload),
+          })
+        : Promise.resolve(),
+    ])
 
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 3500)
