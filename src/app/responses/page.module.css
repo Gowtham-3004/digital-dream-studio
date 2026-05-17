@@ -1,3 +1,13 @@
+/* Reset global cursor: none from main site */
+.loginWrap,
+.tableWrap,
+.loginWrap *,
+.tableWrap * {
+  cursor: auto;
+}
+.loginBtn { cursor: pointer; }
+.loginBtn:disabled { cursor: not-allowed; }
+
 /* Login screen */
 .loginWrap {
   min-height: 100vh;
