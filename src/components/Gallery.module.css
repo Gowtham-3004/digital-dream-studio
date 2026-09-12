@@ -27,9 +27,11 @@
    Every tile keeps its photo's real aspect ratio (--ar, set inline from the image's
    pixel size), so nothing is cropped or stretched and the watermark stays visible.
    flex-grow is proportional to --ar, so all tiles in a row share one height and the
-   row fills the full width edge to edge. */
+   row fills the full width edge to edge.
+   Base width is --ar x 30% of the row, so a portrait starts at ~20% and a landscape
+   at ~45%: rows hold 2-3 photos (P+L+P, P+P+L or L+L) at any desktop/tablet width. */
 .grid {
-  --row: 240px; /* target row height; rows settle near this */
+  --basis: 30%;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -38,8 +40,10 @@
 /* ─── Tilt card ─── */
 .item {
   flex-grow: calc(var(--ar) * 100);
-  flex-basis: calc(var(--ar) * var(--row));
-  max-width: calc(var(--ar) * var(--row) * 2); /* stops a sparse last row from ballooning */
+  flex-basis: calc(var(--ar) * var(--basis));
+  /* 1.6x basis: lets a landscape take its full share of an L+P row (~69%) but stops a
+     lone photo on a sparse last row from ballooning to the full width */
+  max-width: calc(var(--ar) * var(--basis) * 1.6);
   aspect-ratio: var(--ar);
   overflow: hidden;
   position: relative;
@@ -188,12 +192,10 @@
   .header  { flex-direction: column; align-items: flex-start; gap: 24px; }
 }
 
-@media (max-width: 1000px) {
-  .grid { --row: 200px; }
-}
-
 @media (max-width: 600px) {
-  .grid { --row: 150px; gap: 8px; }
+  /* One photo per row on phones, full width at its natural ratio */
+  .grid { gap: 10px; }
+  .item { flex-basis: 100%; max-width: 100%; }
   /* Disable 3D tilt on touch */
   .item { transform: none !important; transition: none; }
 }
