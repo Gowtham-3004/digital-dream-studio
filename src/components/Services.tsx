@@ -86,8 +86,24 @@ export default function Services() {
           </div>
         </div>
 
-        <div className={`${styles.card} ${styles.cardMedium} reveal reveal-delay-2`} onClick={() => track('service_click', { service: 'Birthday Parties' })}>
+        <div className={`${styles.card} ${styles.cardMedium} reveal reveal-delay-2`} onClick={() => track('service_click', { service: 'Maternity Shoots' })}>
           <span className={styles.cardNum}>05</span>
+          <div className={styles.cardContent}>
+            <h3 className={styles.cardName}>Maternity<br />Shoots</h3>
+            <div className={styles.cardDivider} />
+            <p className={styles.cardDesc}>
+              Graceful, softly lit portraits celebrating new beginnings — a tender keepsake of this fleeting chapter before your little one arrives.
+            </p>
+          </div>
+          <div className={styles.cardFooter}>
+            <span className={styles.cardTag}>Portrait</span>
+            <span className={styles.cardArrow}>↗</span>
+          </div>
+        </div>
+
+        {/* Row 3 — three medium cards */}
+        <div className={`${styles.card} ${styles.cardMedium} reveal`} onClick={() => track('service_click', { service: 'Birthday Parties' })}>
+          <span className={styles.cardNum}>06</span>
           <div className={styles.cardContent}>
             <h3 className={styles.cardName}>Birthday<br />Parties</h3>
             <div className={styles.cardDivider} />
@@ -101,9 +117,8 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Row 3 — wide card + narrow card */}
-        <div className={`${styles.card} ${styles.cardWide} ${styles.cardDark} reveal`} onClick={() => track('service_click', { service: 'Corporate Events' })}>
-          <span className={styles.cardNum}>06</span>
+        <div className={`${styles.card} ${styles.cardMedium} ${styles.cardDark} reveal reveal-delay-1`} onClick={() => track('service_click', { service: 'Corporate Events' })}>
+          <span className={styles.cardNum}>07</span>
           <div className={styles.cardBg} style={{ background: 'radial-gradient(ellipse at 80% 50%, rgba(201,169,110,0.08) 0%, transparent 60%)' }} />
           <div className={styles.cardContent}>
             <h3 className={styles.cardName}>Corporate<br />Events</h3>
@@ -119,8 +134,8 @@ export default function Services() {
           </div>
         </div>
 
-        <div className={`${styles.card} ${styles.cardNarrow} reveal reveal-delay-1`} onClick={() => track('service_click', { service: 'Other Events' })}>
-          <span className={styles.cardNum}>07</span>
+        <div className={`${styles.card} ${styles.cardMedium} reveal reveal-delay-2`} onClick={() => track('service_click', { service: 'Other Events' })}>
+          <span className={styles.cardNum}>08</span>
           <div className={styles.cardContent}>
             <h3 className={styles.cardName}>Other<br />Events</h3>
             <div className={styles.cardDivider} />

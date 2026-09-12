@@ -80,5 +80,6 @@
 @media (max-width: 600px) {
   .inner { padding: 48px 24px 36px; }
   .nav { gap: 8px 20px; }
+  .taglineBreak { display: block; }
 }
 

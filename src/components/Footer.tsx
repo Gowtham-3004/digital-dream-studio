@@ -17,7 +17,8 @@ export default function Footer() {
           Digital <span>Dream</span> Studios
         </div>
         <p className={styles.tagline}>
-          Capturing timeless stories with elegance and heart. Your memories, our passion.
+          Capturing timeless stories with elegance and heart.{' '}
+          <span className={styles.taglineBreak}>Your memories, our passion.</span>
         </p>
 
         {/* Divider */}

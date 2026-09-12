@@ -10,6 +10,7 @@ const SERVICES = [
   'Cinematic Films',
   'Pre-Wedding Shoots',
   'Post-Wedding Shoots',
+  'Maternity Shoots',
   'Birthday Parties',
   'Corporate Events',
   'Other Events',

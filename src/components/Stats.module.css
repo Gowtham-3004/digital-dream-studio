@@ -101,6 +101,7 @@
 
 @media (max-width: 600px) {
   .section { padding: 72px 24px; }
-  .grid    { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+  .grid    { grid-template-columns: 1fr; max-width: 100%; }
+  .card    { padding: 40px 24px; }
   .number  { font-size: 3.5rem; }
 }
