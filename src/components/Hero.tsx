@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { track } from '@vercel/analytics'
+import HeroVideo from './HeroVideo'
 import styles from './Hero.module.css'
 
 // Splits a string into word-span pairs for the slide-up reveal
@@ -33,67 +33,9 @@ function WordReveal({
 }
 
 export default function Hero() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current!
-    const ctx    = canvas.getContext('2d')!
-
-    const resize = () => {
-      canvas.width  = window.innerWidth
-      canvas.height = window.innerHeight
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    class Particle {
-      x = 0; y = 0; r = 0; alpha = 0; vx = 0; vy = 0; life = 0; maxLife = 0
-      constructor() { this.reset() }
-      reset() {
-        this.x       = Math.random() * canvas.width
-        this.y       = Math.random() * canvas.height
-        this.r       = Math.random() * 3 + 1
-        this.alpha   = Math.random() * 0.4 + 0.05
-        this.vx      = (Math.random() - 0.5) * 0.3
-        this.vy      = (Math.random() - 0.5) * 0.3
-        this.life    = Math.random() * 200 + 100
-        this.maxLife = this.life
-      }
-      draw() {
-        const fade = Math.sin((1 - this.life / this.maxLife) * Math.PI)
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
-        const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r * 3)
-        g.addColorStop(0, `rgba(201,169,110,${this.alpha * fade})`)
-        g.addColorStop(1, `rgba(201,169,110,0)`)
-        ctx.fillStyle = g
-        ctx.fill()
-      }
-      update() {
-        this.x += this.vx; this.y += this.vy; this.life--
-        if (this.life <= 0) this.reset()
-      }
-    }
-
-    const particles = Array.from({ length: 100 }, () => new Particle())
-    let raf = 0
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      particles.forEach(p => { p.update(); p.draw() })
-      raf = requestAnimationFrame(animate)
-    }
-    raf = requestAnimationFrame(animate)
-
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
-
   return (
     <section id="hero" className={styles.hero}>
-      <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+      <HeroVideo />
       <div className={styles.bg} aria-hidden="true" />
       <div className={styles.vignette} aria-hidden="true" />
 

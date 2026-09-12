@@ -6,13 +6,23 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  /* Base fallback — visible until the poster/first frame paints, and permanently
+     while /videos/hero.mp4 is missing. Previously the opaque bottom layer of .bg. */
+  background: linear-gradient(180deg, #080707 0%, #0f0c0a 50%, #080707 100%);
 }
 
-.canvas {
+/* Stacking is DOM order on purpose (no z-index on .video/.bg):
+   .video -> .bg tint -> .vignette (z 3) -> .content (z 10) */
+.video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;   /* decorative: no right-click "Save video", no tap target */
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .vignette {
@@ -26,10 +36,13 @@
 .bg {
   position: absolute;
   inset: 0;
+  /* Translucent tint over the video. Gold glows unchanged; the opaque base gradient
+     moved to .hero. Tune the middle alpha (0.35–0.6) once real footage lands.
+     Bottom stays near-opaque so the hero dissolves into the page bg. */
   background:
     radial-gradient(ellipse at 60% 40%, rgba(201, 169, 110, 0.09) 0%, transparent 60%),
     radial-gradient(ellipse at 20% 80%, rgba(201, 169, 110, 0.06) 0%, transparent 50%),
-    linear-gradient(180deg, #080707 0%, #0f0c0a 50%, #080707 100%);
+    linear-gradient(180deg, rgba(8, 7, 7, 0.55) 0%, rgba(8, 7, 7, 0.45) 50%, rgba(8, 7, 7, 0.92) 100%);
 }
 
 /* ─── Content ─── */
