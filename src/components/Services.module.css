@@ -35,6 +35,8 @@
   gap: 2px;
   background: var(--border);
   border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden; /* clip corner cells to the rounded outline */
 }
 
 /* ─── Card base ─── */
@@ -201,6 +203,7 @@
   justify-content: space-between;
   padding: 40px 48px;
   border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   background: var(--bg2);
   gap: 32px;
   transition: border-color 0.4s;
@@ -238,6 +241,7 @@
   .card {
     grid-column: span 1 !important;
     border: 1px solid var(--border);
+    border-radius: var(--radius-md);
     min-height: auto;
     padding: 32px 28px 28px;
   }

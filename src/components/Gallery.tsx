@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
-import { GALLERY_ITEMS } from '@/lib/data'
+import { GALLERY_ITEMS, type GalleryItem } from '@/lib/data'
 import styles from './Gallery.module.css'
 
 // 3D tilt effect for each gallery item
@@ -12,7 +12,7 @@ function TiltCard({
   onOpen,
   priority = false,
 }: {
-  item: { src: string; alt: string; label: string }
+  item: GalleryItem
   delayClass: string
   onOpen: (src: string, alt: string) => void
   priority?: boolean
@@ -48,7 +48,7 @@ function TiltCard({
     <button
       ref={cardRef}
       className={`${styles.item} gallery-item reveal ${delayClass}`}
-      style={{ '--rx': '0deg', '--ry': '0deg' } as React.CSSProperties}
+      style={{ '--rx': '0deg', '--ry': '0deg', '--ar': item.width / item.height } as React.CSSProperties}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={() => onOpen(item.src, item.alt)}
@@ -59,8 +59,8 @@ function TiltCard({
       <Image
         src={item.src}
         alt={item.alt}
-        width={600}
-        height={800}
+        width={item.width}
+        height={item.height}
         className={styles.img}
         sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
         loading={priority ? 'eager' : 'lazy'}

@@ -1,6 +1,7 @@
 import Cursor         from '@/components/Cursor'
 import Navbar         from '@/components/Navbar'
 import ScrollProgress from '@/components/ScrollProgress'
+import BackToTop      from '@/components/BackToTop'
 import Hero           from '@/components/Hero'
 import MarqueeSection from '@/components/MarqueeSection'
 import Stats          from '@/components/Stats'
@@ -22,6 +23,7 @@ export default function Home() {
       <Cursor />
       <RevealObserver />
       <Navbar />
+      <BackToTop />
 
       <main>
         <Hero />

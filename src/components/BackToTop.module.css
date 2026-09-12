@@ -1,0 +1,147 @@
+/* ─── Shutter button — camera-lens back-to-top ─── */
+.btn {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 999; /* below mobile drawer (1001) and lightbox (9000) */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: none;
+  color: var(--gold);
+  background: rgba(8, 7, 7, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--border);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+
+  /* Hidden until the user scrolls past the hero */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(18px) scale(0.85);
+  transition:
+    opacity    0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform  0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s,
+    visibility 0s linear 0.5s;
+}
+.btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+.btn:hover {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px var(--gold),
+    0 0 24px rgba(201, 169, 110, 0.25);
+}
+.btn:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ─── Lens rings ─── */
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  transform: rotate(-90deg); /* progress arc starts at 12 o'clock */
+}
+.track {
+  stroke: rgba(201, 169, 110, 0.15);
+  stroke-width: 1.5;
+}
+.progress {
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  /* No transition — raw scroll tracking, same as the top bar */
+}
+.focus {
+  stroke: rgba(201, 169, 110, 0.35);
+  stroke-width: 1;
+  stroke-dasharray: 1.5 4.5;
+  transform-origin: 50% 50%;
+  transition: stroke 0.4s;
+}
+.btn:hover .focus {
+  stroke: var(--gold);
+  animation: focusSpin 8s linear infinite;
+}
+@keyframes focusSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Camera icon ─── */
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover  .icon { transform: translateY(-2px); }
+.btn:active .icon { transform: scale(0.9); }
+
+/* ─── Shutter flash on click ─── */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--gold-light);
+  opacity: 0;
+  pointer-events: none;
+}
+.flash::after { animation: shutter 0.45s ease-out; }
+@keyframes shutter {
+  0%   { opacity: 0; }
+  12%  { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+
+/* ─── Hover label ─── */
+.label {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translate(8px, -50%);
+  white-space: nowrap;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transition:
+    opacity   0.4s,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover .label {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .btn   { right: 18px; bottom: 18px; width: 50px; height: 50px; }
+  .icon  { width: 17px; height: 17px; }
+  .label { display: none; }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .icon, .label, .focus { transition: none; }
+  .btn:hover .focus { animation: none; }
+  .flash::after     { animation: none; }
+}

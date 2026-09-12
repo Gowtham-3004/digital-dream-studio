@@ -33,6 +33,7 @@
   width: 42px;
   height: 42px;
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,6 +74,7 @@
   width: 42px;
   height: 42px;
   border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,6 +223,7 @@
   padding: 20px;
   background: var(--gold);
   border: none;
+  border-radius: var(--radius-sm);
   color: var(--bg);
   font-family: var(--font-jost, 'Jost', sans-serif);
   font-size: 0.65rem;

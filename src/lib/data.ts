@@ -49,66 +49,104 @@ export const SERVICES = [
   },
 ]
 
-export const GALLERY_ITEMS = [
+export type GalleryItem = {
+  src: string
+  alt: string
+  label: string
+  /** Intrinsic pixel size — drives the tile's aspect ratio so photos are never cropped */
+  width: number
+  height: number
+}
+
+export const GALLERY_ITEMS: GalleryItem[] = [
   {
     src: '/images/1.jpg',
     alt: 'Wedding couple bridal portrait',
     label: 'Bridal Portrait',
-  },
-  {
-    src: '/images/2.jpg',
-    alt: 'Wedding ceremony sacred vows',
-    label: 'Sacred Vows',
-  },
-  {
-    src: '/images/3.jpg',
-    alt: 'Wedding reception evening celebration',
-    label: 'Reception Evening',
-  },
-  {
-    src: '/images/4.jpg',
-    alt: 'Candid couple portrait moments',
-    label: 'Candid Moments',
+    width: 1707,
+    height: 2560,
   },
   {
     src: '/images/5.jpg',
     alt: 'Wedding floral detail arrangement',
     label: 'Floral Details',
+    width: 2560,
+    height: 1708,
   },
   {
-    src: '/images/6.jpg',
-    alt: 'Pre-wedding outdoor shoot',
-    label: 'Pre-Wedding',
+    src: '/images/11.jpg',
+    alt: 'Bride in silk saree under warm window light',
+    label: 'Window Light',
+    width: 1981,
+    height: 2560,
+  },
+  {
+    src: '/images/9.jpg',
+    alt: 'Fine wedding detail decor',
+    label: 'Fine Details',
+    width: 1708,
+    height: 2560,
+  },
+  {
+    src: '/images/12.jpg',
+    alt: 'Bride portrait in a circular spotlight',
+    label: 'Spotlight',
+    width: 2048,
+    height: 2560,
   },
   {
     src: '/images/7.jpg',
     alt: 'Golden hour wedding portrait',
     label: 'Golden Hour',
+    width: 2560,
+    height: 1708,
   },
-  // {
-  //   src: '/images/8.jpg',
-  //   alt: 'Wedding ceremony hall',
-  //   label: 'Ceremony',
-  // },
   {
-    src: '/images/9.jpg',
-    alt: 'Fine wedding detail decor',
-    label: 'Fine Details',
+    src: '/images/2.jpg',
+    alt: 'Wedding ceremony sacred vows',
+    label: 'Sacred Vows',
+    width: 1708,
+    height: 2560,
+  },
+  {
+    src: '/images/6.jpg',
+    alt: 'Pre-wedding outdoor shoot',
+    label: 'Pre-Wedding',
+    width: 1708,
+    height: 2560,
   },
   {
     src: '/images/10.jpg',
     alt: 'Wedding celebration moments',
     label: 'Celebration',
+    width: 2560,
+    height: 1704,
+  },
+  {
+    src: '/images/13.jpg',
+    alt: 'Black and white dramatic bridal portrait',
+    label: 'Light & Shadow',
+    width: 2560,
+    height: 1707,
+  },
+  {
+    src: '/images/4.jpg',
+    alt: 'Candid couple portrait moments',
+    label: 'Candid Moments',
+    width: 2560,
+    height: 1708,
+  },
+  {
+    src: '/images/3.jpg',
+    alt: 'Wedding reception evening celebration',
+    label: 'Reception Evening',
+    width: 2560,
+    height: 1706,
   },
   // {
-  //   src: '/images/11.jpg',
-  //   alt: 'Couple intimate portrait',
-  //   label: 'Intimate Moments',
-  // },
-  // {
-  //   src: '/images/12.jpg',
-  //   alt: 'Wedding day highlights',
-  //   label: 'Highlights',
+  //   src: '/images/8.jpg',
+  //   alt: 'Wedding ceremony hall',
+  //   label: 'Ceremony',
   // },
 ]
 

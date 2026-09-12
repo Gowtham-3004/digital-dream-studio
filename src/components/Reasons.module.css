@@ -19,6 +19,8 @@
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden; /* clip corner cells to the rounded outline */
   max-width: 900px;
   margin: 0 auto;
 }

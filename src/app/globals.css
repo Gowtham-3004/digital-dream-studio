@@ -8,6 +8,8 @@
   --text:       #c4b8a8;   /* readable warm tone for body copy */
   --muted:      #7a6f63;   /* for labels, captions, secondary UI */
   --border:     rgba(201, 169, 110, 0.2);
+  --radius-sm:  4px;   /* buttons, icon boxes, controls */
+  --radius-md:  8px;   /* cards, panels, tiles, containers */
 }
 
 /* ─── Reset ─── */
@@ -237,6 +239,7 @@ body::before {
   color: var(--bg);
   background: var(--gold);
   border: none;
+  border-radius: var(--radius-sm);
   padding: 18px 48px;
   cursor: none;
   font-family: var(--font-jost, 'Jost', sans-serif);
@@ -268,6 +271,7 @@ body::before {
   color: var(--gold);
   background: transparent;
   border: 1px solid var(--gold);
+  border-radius: var(--radius-sm);
   padding: 18px 48px;
   cursor: none;
   font-family: var(--font-jost, 'Jost', sans-serif);
