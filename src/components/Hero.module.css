@@ -141,12 +141,13 @@
 /* ─── Subtitle ─── */
 .subtitle {
   font-family: var(--font-cormorant, 'Cormorant Garamond', serif);
-  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-  font-weight: 300;
+  font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+  font-weight: 400;
   font-style: italic;
-  color: var(--muted);
+  color: var(--cream);
   margin-bottom: 56px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.6);
   animation: heroFadeIn 1s ease both;
 }
 
