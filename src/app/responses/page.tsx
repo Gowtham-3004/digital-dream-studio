@@ -43,7 +43,9 @@ export default function ResponsesPage() {
       }
 
       const data: Row[] = await res.json()
-      setRows(data)
+      // Newest submissions first; rows without a valid timestamp sink to the bottom
+      const toTime = (r: Row) => new Date(r.Timestamp).getTime() || 0
+      setRows([...data].sort((a, b) => toTime(b) - toTime(a)))
       setAuthenticated(true)
     } catch {
       setError('Network error. Please try again.')
