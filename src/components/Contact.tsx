@@ -30,33 +30,17 @@ export default function Contact() {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    const web2phoneBody = new FormData()
-    web2phoneBody.append('public_key', 'JLlcg4wp3AtPeAWLsLdIF5TM')
-    web2phoneBody.append('field', form.name)
-    web2phoneBody.append('field_2', form.partner)
-    web2phoneBody.append('field_3', form.email)
-    web2phoneBody.append('field_4', form.phone)
-    web2phoneBody.append('field_5', form.date)
-    web2phoneBody.append('field_6', form.service)
-    web2phoneBody.append('field_7', form.message)
-
     setStatus('loading')
     track('contact_form_submit', { service: form.service || 'unselected' })
 
     try {
-      const [sheetsRes] = await Promise.allSettled([
-        fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
-        }),
-        fetch('https://web2phone.co.uk/api/v1/submit/', {
-          method: 'POST',
-          body: web2phoneBody,
-        }),
-      ])
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
 
-      const ok = sheetsRes.status === 'fulfilled' && sheetsRes.value.ok
+      const ok = res.ok
       if (ok) {
         track('contact_form_success', { service: form.service || 'unselected' })
       } else {
