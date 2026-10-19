@@ -120,6 +120,19 @@
   letter-spacing: 0;
 }
 
+.required {
+  color: var(--gold);
+  letter-spacing: 0;
+}
+
+.error {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  color: #e08a8a;
+  letter-spacing: 0.02em;
+}
+
 .group input,
 .group select,
 .group textarea {
@@ -146,6 +159,7 @@
   border-color: var(--gold);
   box-shadow: 0 4px 16px -4px rgba(201, 169, 110, 0.18);
 }
+.group input[aria-invalid="true"] { border-color: #e08a8a; }
 
 .group::after {
   content: '';

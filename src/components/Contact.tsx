@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { track } from '@vercel/analytics'
 import { CONTACT_INFO } from '@/lib/data'
+import { validateEnquiry, type EnquiryErrors, type EnquiryField } from '@/lib/validation'
 import styles from './Contact.module.css'
 
 const SERVICES = [
@@ -22,13 +23,38 @@ export default function Contact() {
   const [form, setForm] = useState({
     name: '', partner: '', email: '', phone: '', date: '', service: '', message: '',
   })
+  const [errors, setErrors] = useState<EnquiryErrors>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    setForm(f => ({ ...f, [name]: value }))
+    if (name in errors) {
+      setErrors(prev => {
+        const next = { ...prev }
+        delete next[name as EnquiryField]
+        return next
+      })
+    }
   }
+
+  const fieldProps = (field: EnquiryField) => errors[field]
+    ? { 'aria-invalid': true, 'aria-describedby': `${field}-error` }
+    : {}
+
+  const fieldError = (field: EnquiryField) => errors[field] && (
+    <span id={`${field}-error`} className={styles.error} role="alert">{errors[field]}</span>
+  )
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
+
+    const found = validateEnquiry(form)
+    setErrors(found)
+    const firstInvalid = (['name', 'email', 'phone'] as const).find(f => found[f])
+    if (firstInvalid) {
+      document.getElementById(firstInvalid)?.focus()
+      return
+    }
 
     setStatus('loading')
     track('contact_form_submit', { service: form.service || 'unselected' })
@@ -142,8 +168,9 @@ export default function Contact() {
         >
           <div className={styles.row}>
             <div className={styles.group}>
-              <label htmlFor="name">Your Name</label>
-              <input id="name" name="name" type="text" placeholder="Enter your name" value={form.name} onChange={handleChange} required />
+              <label htmlFor="name">Your Name <span className={styles.required} aria-hidden="true">*</span></label>
+              <input id="name" name="name" type="text" placeholder="Enter your name" value={form.name} onChange={handleChange} maxLength={80} autoComplete="name" required {...fieldProps('name')} />
+              {fieldError('name')}
             </div>
             <div className={styles.group}>
               <label htmlFor="partner">
@@ -155,13 +182,18 @@ export default function Contact() {
           </div>
 
           <div className={styles.group}>
-            <label htmlFor="email">Email Address</label>
-            <input id="email" name="email" type="email" placeholder="hello@example.com" value={form.email} onChange={handleChange} required />
+            <label htmlFor="email">
+              Email Address{' '}
+              <span className={styles.optional}>(Optional)</span>
+            </label>
+            <input id="email" name="email" type="email" placeholder="hello@example.com" value={form.email} onChange={handleChange} autoComplete="email" {...fieldProps('email')} />
+            {fieldError('email')}
           </div>
 
           <div className={styles.group}>
-            <label htmlFor="phone">Phone Number</label>
-            <input id="phone" name="phone" type="tel" placeholder="+91 00000 00000" value={form.phone} onChange={handleChange} />
+            <label htmlFor="phone">Mobile Number <span className={styles.required} aria-hidden="true">*</span></label>
+            <input id="phone" name="phone" type="tel" inputMode="tel" placeholder="+91 00000 00000" value={form.phone} onChange={handleChange} maxLength={20} autoComplete="tel" required {...fieldProps('phone')} />
+            {fieldError('phone')}
           </div>
 
           <div className={styles.row}>
@@ -189,7 +221,7 @@ export default function Contact() {
 
           <div className={styles.group}>
             <label htmlFor="message">Your Love Story</label>
-            <textarea id="message" name="message" placeholder="Tell us about your dream wedding..." value={form.message} onChange={handleChange} rows={4} />
+            <textarea id="message" name="message" placeholder="Tell us about your dream wedding..." value={form.message} onChange={handleChange} rows={4} maxLength={2000} />
           </div>
 
           <button

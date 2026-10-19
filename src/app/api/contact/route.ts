@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { CONTACT_INFO } from '@/lib/data'
+import { EMAIL_PATTERN, validateEnquiry } from '@/lib/validation'
 
 
 type Enquiry = {
@@ -12,8 +12,6 @@ type Enquiry = {
   service?: string
   message?: string
 }
-
-const EMAIL_PATTERN = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/
 
 function escapeHtml(value: string) {
   return value
@@ -68,7 +66,18 @@ async function sendNotificationEmail(enquiry: Enquiry) {
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
+  let body: Enquiry
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Invalid request body' }, { status: 400 })
+  }
+
+  const errors = validateEnquiry(body ?? {})
+  if (Object.keys(errors).length > 0) {
+    return NextResponse.json({ ok: false, errors }, { status: 400 })
+  }
+
   const { name, partner, email, phone, date, service, message } = body
 
   const sheetsPayload = { ...body, timestamp: new Date().toISOString() }
