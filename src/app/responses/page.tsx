@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState, FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, FormEvent } from 'react'
 import type { DateRange } from 'react-day-picker'
 import DateFilter, { type DateField } from './DateFilter'
 import styles from './page.module.css'
@@ -36,6 +36,10 @@ export default function ResponsesPage() {
   const [error, setError] = useState('')
   const [dateField, setDateField] = useState<DateField>('submitted')
   const [range, setRange] = useState<DateRange | undefined>()
+  const [selected, setSelected] = useState<Set<string>>(new Set())
+  const [deleting, setDeleting] = useState(false)
+  const [deleteError, setDeleteError] = useState('')
+  const selectAllRef = useRef<HTMLInputElement>(null)
 
   const filteredRows = useMemo(() => {
     if (!range?.from) return rows
@@ -55,6 +59,64 @@ export default function ResponsesPage() {
   }, [rows, range, dateField])
 
   const isFiltered = !!range?.from
+
+  // Selection only ever covers visible rows, so drop it whenever the filter changes
+  useEffect(() => {
+    setSelected(new Set())
+  }, [range, dateField])
+
+  const selectableKeys = useMemo(
+    () => filteredRows.map(r => r.Timestamp).filter(Boolean),
+    [filteredRows]
+  )
+  const allSelected = selectableKeys.length > 0 && selectableKeys.every(k => selected.has(k))
+  const someSelected = selected.size > 0 && !allSelected
+
+  useEffect(() => {
+    if (selectAllRef.current) selectAllRef.current.indeterminate = someSelected
+  }, [someSelected])
+
+  const toggleRow = (key: string) => {
+    setSelected(prev => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  }
+
+  const toggleAll = () => {
+    setSelected(allSelected ? new Set() : new Set(selectableKeys))
+  }
+
+  const handleDelete = async () => {
+    const count = selected.size
+    if (!count) return
+    if (!confirm(`Delete ${count} response${count !== 1 ? 's' : ''}? This cannot be undone.`)) return
+
+    setDeleting(true)
+    setDeleteError('')
+    try {
+      const timestamps = [...selected]
+      const res = await fetch('/api/admin/responses', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'x-admin-password': password },
+        body: JSON.stringify({ timestamps }),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => null)
+        setDeleteError(data?.error ?? 'Failed to delete responses.')
+        return
+      }
+      const removed = new Set(timestamps)
+      setRows(prev => prev.filter(r => !removed.has(r.Timestamp)))
+      setSelected(new Set())
+    } catch {
+      setDeleteError('Network error. Please try again.')
+    } finally {
+      setDeleting(false)
+    }
+  }
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault()
@@ -121,6 +183,12 @@ export default function ResponsesPage() {
           {isFiltered && `${filteredRows.length} of `}
           {rows.length} submission{rows.length !== 1 ? 's' : ''}
         </span>
+        {selected.size > 0 && (
+          <button type="button" className={styles.deleteBtn} onClick={handleDelete} disabled={deleting}>
+            {deleting ? 'Deleting…' : `Delete (${selected.size})`}
+          </button>
+        )}
+        {deleteError && <p className={styles.errorMsg}>{deleteError}</p>}
         {rows.length > 0 && (
           <div className={styles.filterBar}>
             <DateFilter
@@ -147,6 +215,16 @@ export default function ResponsesPage() {
           <table className={styles.table}>
             <thead>
               <tr>
+                <th className={styles.checkCell}>
+                  <input
+                    ref={selectAllRef}
+                    type="checkbox"
+                    aria-label="Select all visible responses"
+                    checked={allSelected}
+                    disabled={selectableKeys.length === 0}
+                    onChange={toggleAll}
+                  />
+                </th>
                 <th>#</th>
                 <th>Date Submitted</th>
                 <th>Name</th>
@@ -160,7 +238,16 @@ export default function ResponsesPage() {
             </thead>
             <tbody>
               {filteredRows.map((row, i) => (
-                <tr key={i}>
+                <tr key={row.Timestamp || i} className={selected.has(row.Timestamp) ? styles.selectedRow : undefined}>
+                  <td className={styles.checkCell}>
+                    <input
+                      type="checkbox"
+                      aria-label={`Select response from ${row.Name || 'unknown'}`}
+                      checked={selected.has(row.Timestamp)}
+                      disabled={!row.Timestamp}
+                      onChange={() => toggleRow(row.Timestamp)}
+                    />
+                  </td>
                   <td>{i + 1}</td>
                   <td>{row.Timestamp ? new Date(row.Timestamp).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}</td>
                   <td>{row.Name || '—'}</td>

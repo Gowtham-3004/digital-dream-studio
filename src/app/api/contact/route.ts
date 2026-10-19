@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { CONTACT_INFO } from '@/lib/data'
 
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAsTJyOSMnlZyYErWDV0ErYPoH2HTMXR8M57d4f3ZqOQet_pxtfNC2cmRSJHgiKG30sA/exec"
 
 type Enquiry = {
   name?: string
@@ -73,14 +72,17 @@ export async function POST(req: NextRequest) {
   const { name, partner, email, phone, date, service, message } = body
 
   const sheetsPayload = { ...body, timestamp: new Date().toISOString() }
+  const scriptUrl = process.env.APPS_SCRIPT_URL
 
   const [sheetsResult, emailResult] = await Promise.allSettled([
-    fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      redirect: 'follow',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(sheetsPayload),
-    }),
+    scriptUrl
+      ? fetch(scriptUrl, {
+          method: 'POST',
+          redirect: 'follow',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sheetsPayload),
+        })
+      : Promise.reject(new Error('Missing APPS_SCRIPT_URL env var')),
     sendNotificationEmail({ name, partner, email, phone, date, service, message }),
   ])
 

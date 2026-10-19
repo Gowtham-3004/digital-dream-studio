@@ -200,6 +200,52 @@
   color: #999;
 }
 
+/* Row selection + bulk delete */
+.deleteBtn {
+  background: transparent;
+  color: #e07070;
+  border: 1px solid #e07070;
+  border-radius: 2px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  align-self: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.deleteBtn:not(:disabled):hover {
+  background: #e07070;
+  color: #0a0a0a;
+}
+
+.deleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.table .checkCell {
+  width: 1%;
+  padding-right: 0;
+}
+
+.checkCell input {
+  accent-color: #c9a96e;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+}
+
+.checkCell input:disabled {
+  cursor: not-allowed;
+}
+
+.table tbody tr.selectedRow td {
+  background: #141210;
+}
+
 .link {
   color: #c9a96e;
   text-decoration: none;
