@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
-import { GALLERY_ITEMS, type GalleryItem } from '@/lib/data'
+import type { GalleryItem } from '@/lib/gallery'
 import styles from './Gallery.module.css'
 
 // 3D tilt effect for each gallery item
@@ -77,7 +77,7 @@ function TiltCard({
   )
 }
 
-export default function Gallery() {
+export default function Gallery({ items }: { items: GalleryItem[] }) {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
   const [lightboxAlt, setLightboxAlt] = useState('')
 
@@ -100,9 +100,9 @@ export default function Gallery() {
         </div>
 
         <div className={styles.grid}>
-          {GALLERY_ITEMS.map((item, i) => (
+          {items.map((item, i) => (
             <TiltCard
-              key={i}
+              key={item.src}
               item={item}
               delayClass={delayClasses[i % 3]}
               onOpen={open}

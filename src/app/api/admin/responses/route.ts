@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isAdminPassword } from '@/lib/adminAuth'
 
 export async function POST(req: NextRequest) {
-  const adminPassword = 'digitalDreamsAdmin123'
+  const adminPassword = process.env.ADMIN_PASSWORD
   const scriptUrl = "https://script.google.com/macros/s/AKfycbxAsTJyOSMnlZyYErWDV0ErYPoH2HTMXR8M57d4f3ZqOQet_pxtfNC2cmRSJHgiKG30sA/exec"
 
   if (!adminPassword || !scriptUrl) {
@@ -11,7 +12,7 @@ export async function POST(req: NextRequest) {
 
   const { password } = await req.json().catch(() => ({}))
 
-  if (typeof password !== 'string' || password !== adminPassword) {
+  if (!isAdminPassword(password)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
