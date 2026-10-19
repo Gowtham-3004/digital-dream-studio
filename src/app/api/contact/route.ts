@@ -26,7 +26,7 @@ function escapeHtml(value: string) {
 }
 
 async function sendNotificationEmail(enquiry: Enquiry) {
-  const apiKey = 're_g3qNahtM_8yQfAyYuji96WDRcfqJgiGcT'
+  const apiKey = 're_Q1uu9B9f_87hhXhYzqGuFSBgRvjpW7FwS'
   if (!apiKey) {
     console.warn('RESEND_API_KEY not set, skipping notification email')
     return
