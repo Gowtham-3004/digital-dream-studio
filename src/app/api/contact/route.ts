@@ -26,7 +26,7 @@ function escapeHtml(value: string) {
 }
 
 async function sendNotificationEmail(enquiry: Enquiry) {
-  const apiKey = process.env.RESEND_API_KEY
+  const apiKey = 're_DprgXnp6_2nhsA1hhvYPEcMyvfhDGQCyy'
   if (!apiKey) {
     console.warn('RESEND_API_KEY not set, skipping notification email')
     return
@@ -57,8 +57,8 @@ async function sendNotificationEmail(enquiry: Enquiry) {
 
   const resend = new Resend(apiKey)
   const { error } = await resend.emails.send({
-    from: process.env.RESEND_FROM_EMAIL ?? 'Digital Dream Studio <onboarding@resend.dev>',
-    to: process.env.RESEND_TO_EMAIL ?? CONTACT_INFO.email,
+    from: 'hello@digitaldreamstudios.in',
+    to: 'hello.digitaldreamstudios@gmail.com',
     replyTo: enquiry.email && EMAIL_PATTERN.test(enquiry.email.trim()) ? enquiry.email.trim() : undefined,
     subject: `New enquiry: ${enquiry.name || 'Unknown'} – ${enquiry.service || 'General'}`,
     html,
