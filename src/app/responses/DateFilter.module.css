@@ -1,0 +1,159 @@
+.filter {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.filter button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.filter button:disabled {
+  cursor: not-allowed;
+}
+
+/* Field toggle */
+.toggle {
+  display: inline-flex;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.toggleBtn,
+.toggleActive {
+  border: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.9rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggleBtn {
+  background: #111;
+  color: #888;
+}
+
+.toggleBtn:hover {
+  color: #e8e0d0;
+}
+
+.toggleActive {
+  background: #c9a96e;
+  color: #0a0a0a;
+  font-weight: 600;
+}
+
+/* Trigger */
+.trigger,
+.triggerActive {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  font-size: 0.82rem;
+  padding: 0.5rem 0.9rem;
+  transition: border-color 0.2s;
+  white-space: nowrap;
+}
+
+.trigger {
+  color: #aaa;
+}
+
+.triggerActive {
+  color: #c9a96e;
+  border-color: #c9a96e;
+}
+
+.trigger:hover {
+  border-color: #c9a96e;
+}
+
+/* Popover */
+.popover {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 20;
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  padding: 1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+  color: #e8e0d0;
+  max-width: calc(100vw - 2rem);
+}
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.chip,
+.clear {
+  background: transparent;
+  border: 1px solid #333;
+  border-radius: 999px;
+  color: #ccc;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.8rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.chip:hover {
+  border-color: #c9a96e;
+  color: #c9a96e;
+}
+
+.clear {
+  margin-left: auto;
+  color: #e07070;
+  border-color: #4a2a2a;
+}
+
+.clear:disabled {
+  opacity: 0.4;
+}
+
+/* Theme react-day-picker to match the admin palette */
+.popover :global(.rdp-root) {
+  --rdp-accent-color: #c9a96e;
+  --rdp-accent-background-color: rgba(201, 169, 110, 0.15);
+  --rdp-range_start-color: #0a0a0a;
+  --rdp-range_end-color: #0a0a0a;
+  --rdp-day-height: 38px;
+  --rdp-day-width: 38px;
+  --rdp-day_button-height: 36px;
+  --rdp-day_button-width: 36px;
+  --rdp-months-gap: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.popover :global(.rdp-range_end) {
+  color: #0a0a0a;
+}
+
+.popover :global(.rdp-selected) {
+  font-size: inherit;
+}
+
+.popover :global(.rdp-day_button),
+.popover :global(.rdp-button_previous),
+.popover :global(.rdp-button_next) {
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .popover {
+    left: 0;
+    right: auto;
+  }
+}
